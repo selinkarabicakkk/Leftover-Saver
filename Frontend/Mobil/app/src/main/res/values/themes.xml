@@ -21,6 +21,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-
+    <dimen name="button_corner_radius">20dp</dimen>
 
 </resources>
