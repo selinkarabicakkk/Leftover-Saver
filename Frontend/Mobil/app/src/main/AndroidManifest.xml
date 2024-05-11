@@ -11,7 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodLeftoverSaver"
         tools:targetApi="31">
-
+        <activity
+            android:name=".FavouriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantList"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
