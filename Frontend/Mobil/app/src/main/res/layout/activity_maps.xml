@@ -62,9 +62,10 @@
         app:uiRotateGestures="true"
         app:uiZoomControls="true" />
 
+
     <Button
         android:id="@+id/save_location"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Use This Location"
         android:textAllCaps="false"
