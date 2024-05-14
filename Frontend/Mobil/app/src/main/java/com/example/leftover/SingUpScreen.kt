@@ -61,10 +61,6 @@ fun SignUpScreen(
                         Text(text = "Sign Up")
                     }
                     Spacer(modifier = Modifier.padding(5.dp))
-                    Button(onClick = onContinueWithGoogleButtonClicked) {
-                        Text(text = "Continue with Google")
-                    }
-                    Spacer(modifier = Modifier.padding(5.dp))
                     Button(onClick = onLogInButtonClicked) {
                         Text(text = "Log in")
                     }

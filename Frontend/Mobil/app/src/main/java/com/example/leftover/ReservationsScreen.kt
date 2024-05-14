@@ -38,17 +38,10 @@ fun ReservationsScreen(
    Surface(
        color = colorResource(id = R.color.Alabaster)
    ) {
-       Column {
-           UpPart()
+       Column(modifier = Modifier.fillMaxSize()) {
            ReservationsInfo(
                 onGoBackButtonClicked = onGoBackButtonClicked,
                 onDetailsButtonClicked = onDetailsButtonClicked
-           )
-           BottomPart(
-               onHomePageButtonClicked = onHomePageButtonClicked,
-               onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-               onReservationScreensButtonClicked = onReservationScreensButtonClicked,
-               onProfilePageButtonClicked = onProfilePageButtonClicked
            )
        }
    }

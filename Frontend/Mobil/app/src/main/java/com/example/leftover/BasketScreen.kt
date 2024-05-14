@@ -49,14 +49,14 @@ fun BasketScreen(
     onFavouritePageButtonClicked: () -> Unit,
     onReservationScreensButtonClicked: () -> Unit,
     onProfilePageButtonClicked: () -> Unit,
-    onReserveButtonClicked: () -> Unit
-
+    onReserveButtonClicked: () -> Unit,
+    onLocationButtonClicked: () -> Unit
 ){
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
-            UpPart()
+            UpPart(onLocationButtonClicked)
             BasketInfo(
                 modifier = Modifier,
                 onReserveButtonClicked = onReservationScreensButtonClicked
@@ -64,15 +64,11 @@ fun BasketScreen(
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onReservationScreensButtonClicked = onReservationScreensButtonClicked,
+                onBasketScreensButtonClicked = onReservationScreensButtonClicked,
                 onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
     }
-
-
-
-
 }
 
 @Composable
@@ -174,7 +170,8 @@ fun BasketScreenPreview(){
         onFavouritePageButtonClicked = {},
         onReservationScreensButtonClicked = {},
         onProfilePageButtonClicked = {},
-        onReserveButtonClicked = {}
+        onReserveButtonClicked = {},
+        onLocationButtonClicked = {}
     )
 }
 

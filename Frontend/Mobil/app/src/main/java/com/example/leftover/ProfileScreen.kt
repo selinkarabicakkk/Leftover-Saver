@@ -37,22 +37,23 @@ import androidx.compose.ui.unit.sp
 fun ProfileScreen(
     onHomePageButtonClicked: () -> Unit,
     onFavouritePageButtonClicked: () -> Unit,
-    onReservationScreensButtonClicked: () -> Unit,
+    onBasketScreensButtonClicked: () -> Unit,
     onProfilePageButtonClicked: () -> Unit,
-    onLogOutButtonClicked:() -> Unit
+    onLogOutButtonClicked:() -> Unit,
+    onLocationButtonClicked: () -> Unit
 ) {
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
         Column {
-            UpPart()
+            UpPart(onLocationButtonClicked)
             ProfileInfo(
                 onLogOutButtonClicked = onLogOutButtonClicked
             )
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onReservationScreensButtonClicked = onReservationScreensButtonClicked,
+                onBasketScreensButtonClicked = onBasketScreensButtonClicked,
                 onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
@@ -110,13 +111,6 @@ fun ProfileInfo(
                             }
                         }
                     }
-                    Row {
-                        Spacer(modifier = Modifier.weight(1f))
-                        Button(onClick = { /*TODO*/ }) {
-                            Text(text = "Change Password" )
-                        }
-                    }
-
                 }
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -170,9 +164,10 @@ fun ProfileScreenPreview() {
     ProfileScreen(
         onHomePageButtonClicked = {},
         onFavouritePageButtonClicked = {},
-        onReservationScreensButtonClicked = {},
+        onBasketScreensButtonClicked = {},
         onProfilePageButtonClicked = {},
-        onLogOutButtonClicked = {}
+        onLogOutButtonClicked = {},
+        onLocationButtonClicked = {}
     )
 }
 

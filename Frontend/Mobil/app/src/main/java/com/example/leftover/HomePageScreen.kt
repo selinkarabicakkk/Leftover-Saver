@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -34,22 +35,23 @@ import androidx.compose.ui.unit.dp
 fun HomePageScreen(
     onHomePageButtonClicked: () -> Unit,
     onFavouritePageButtonClicked : () -> Unit,
-    onReservationScreensButtonClicked : () -> Unit,
+    onBasketScreensButtonClicked : () -> Unit,
     onProfilePageButtonClicked : () -> Unit,
-    onRestaurantBoxClicked: () -> Unit
+    onRestaurantBoxClicked: () -> Unit,
+    onLocationButtonClicked: () -> Unit
 ){
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
         Column {
-            UpPart()
+            UpPart(onLocationButtonClicked)
             HomePageScreenInfo(
                 onRestaurantBoxClicked = onRestaurantBoxClicked
             )
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onReservationScreensButtonClicked = onReservationScreensButtonClicked,
+                onBasketScreensButtonClicked = onBasketScreensButtonClicked,
                 onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
@@ -67,6 +69,7 @@ fun HomePageScreenInfo(
             .height(600.dp)
             .fillMaxWidth()
     ) {
+
         Spacer(modifier = Modifier.padding(5.dp))
         Box{
             Column {
@@ -196,8 +199,9 @@ fun HomePageScreenPreview(){
     HomePageScreen(
         onHomePageButtonClicked = {},
         onFavouritePageButtonClicked= {},
-        onReservationScreensButtonClicked= {},
+        onBasketScreensButtonClicked= {},
         onProfilePageButtonClicked = {},
-        onRestaurantBoxClicked = {}
+        onRestaurantBoxClicked = {},
+        onLocationButtonClicked = {}
     )
 }

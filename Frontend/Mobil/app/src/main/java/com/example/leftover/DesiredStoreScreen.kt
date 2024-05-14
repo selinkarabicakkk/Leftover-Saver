@@ -33,16 +33,17 @@ import androidx.compose.ui.unit.dp
 fun DesiredStoreScreen(
     onHomePageButtonClicked: () -> Unit,
     onFavouritePageButtonClicked: () -> Unit,
-    onReservationScreensButtonClicked: () -> Unit,
+    onBasketScreensButtonClicked: () -> Unit,
     onProfilePageButtonClicked: () -> Unit,
     onFilterRowClicked: () -> Unit,
-    onRestaurantBoxClicked: () -> Unit
+    onRestaurantBoxClicked: () -> Unit,
+    onLocationButtonClicked: () -> Unit
 ) {
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
         Column {
-            UpPart()
+            UpPart(onLocationButtonClicked)
             DesiredStoreInfo(
                 onFilterRowClicked = { onFilterRowClicked },
                 onRestaurantBoxClicked = { onRestaurantBoxClicked }
@@ -50,7 +51,7 @@ fun DesiredStoreScreen(
             BottomPart(
                 onHomePageButtonClicked = {onHomePageButtonClicked},
                 onFavouritePageButtonClicked = {onFavouritePageButtonClicked},
-                onReservationScreensButtonClicked = {onReservationScreensButtonClicked},
+                onBasketScreensButtonClicked = {onBasketScreensButtonClicked},
                 onProfilePageButtonClicked = {onProfilePageButtonClicked}
             )
         }
@@ -134,9 +135,10 @@ fun DesiredStoreScreenPreview() {
     DesiredStoreScreen(
         onHomePageButtonClicked = {},
         onFavouritePageButtonClicked = {},
-        onReservationScreensButtonClicked = {},
+        onBasketScreensButtonClicked = {},
         onProfilePageButtonClicked = {},
         onFilterRowClicked = {},
-        onRestaurantBoxClicked = {}
+        onRestaurantBoxClicked = {},
+        onLocationButtonClicked = {}
     )
 }

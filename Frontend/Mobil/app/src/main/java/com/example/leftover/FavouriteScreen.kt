@@ -34,23 +34,24 @@ import androidx.compose.ui.unit.dp
 fun FavouriteScreen(
     onHomePageButtonClicked: () -> Unit,
     onFavouritePageButtonClicked: () -> Unit,
-    onReservationScreensButtonClicked: () -> Unit,
+    onBasketScreensButtonClicked: () -> Unit,
     onProfilePageButtonClicked: () -> Unit,
     onRestaurantBoxClicked: () -> Unit,
+    onLocationButtonClicked: () -> Unit
 
 ){
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
         Column {
-            UpPart()
+            UpPart(onLocationButtonClicked)
             FavouriteInfo(
                 onRestaurantBoxClicked = onRestaurantBoxClicked
             )
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onReservationScreensButtonClicked = onReservationScreensButtonClicked,
+                onBasketScreensButtonClicked = onBasketScreensButtonClicked,
                 onProfilePageButtonClicked = onProfilePageButtonClicked,
 
             )
@@ -134,9 +135,10 @@ fun FavouriteScreenPreview(){
     FavouriteScreen(
         onHomePageButtonClicked = {},
         onFavouritePageButtonClicked = {},
-        onReservationScreensButtonClicked = {},
+        onBasketScreensButtonClicked = {},
         onProfilePageButtonClicked = {},
-        onRestaurantBoxClicked = {}
+        onRestaurantBoxClicked = {},
+        onLocationButtonClicked = {}
     )
 }
 

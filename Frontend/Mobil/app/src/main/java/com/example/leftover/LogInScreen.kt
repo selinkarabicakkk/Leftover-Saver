@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.dp
 fun LogInScreen(
     onLogInButtonClicked : () -> Unit,
     onSignUpButtonClicked : () -> Unit,
-    onContinueWithGoogleButtonClicked : () -> Unit,
 ){
     Surface(
         color = colorResource(id = R.color.Alabaster)
@@ -63,10 +62,6 @@ fun LogInScreen(
                     }
                     Spacer(modifier = Modifier.padding(5.dp))
                     Button(onClick = onSignUpButtonClicked) {
-                        Text(text = "Continue with Google")
-                    }
-                    Spacer(modifier = Modifier.padding(5.dp))
-                    Button(onClick = onContinueWithGoogleButtonClicked) {
                         Text(text = "SIGN UP!")
                     }
                 }
@@ -84,6 +79,6 @@ fun LogInScreenPreview(){
     LogInScreen(
         onLogInButtonClicked = {},
         onSignUpButtonClicked= {},
-        onContinueWithGoogleButtonClicked = {}
+
     )
 }

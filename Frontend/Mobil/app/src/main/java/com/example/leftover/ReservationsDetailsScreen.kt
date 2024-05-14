@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,8 +23,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 
 @Composable
@@ -32,21 +35,15 @@ fun ReservationsDetailsScreen(
     onFavouritePageButtonClicked: () -> Unit,
     onReservationScreensButtonClicked: () -> Unit,
     onProfilePageButtonClicked: () -> Unit,
-    onGoBackButtonClicked: () -> Unit
+    onGoBackButtonClicked: () -> Unit,
+    onLocationButtonClicked: () -> Unit
 ) {
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
-        Column {
-            UpPart()
+        Column(Modifier.fillMaxSize()) {
             ReservationDetailsInfo(
                 onGoBackButtonClicked = onGoBackButtonClicked
-            )
-            BottomPart(
-                onHomePageButtonClicked = onHomePageButtonClicked,
-                onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onReservationScreensButtonClicked = onReservationScreensButtonClicked,
-                onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
     }
@@ -69,7 +66,7 @@ fun ReservationDetailsInfo(
             .fillMaxWidth()
             .padding(10.dp)
             .background(colorResource(id = R.color.SkyBlue))) {
-            Text(text = "Bussines Name")
+            Text(text = "Bussines Name", fontWeight = FontWeight.Bold, fontSize = 20.sp, modifier = Modifier.padding(10.dp))
         }
         Box(modifier = Modifier
             .fillMaxWidth()
@@ -119,6 +116,7 @@ fun ReservationDetailsScreenPreview() {
         onFavouritePageButtonClicked = {},
         onReservationScreensButtonClicked = {},
         onProfilePageButtonClicked = {},
-        onGoBackButtonClicked = {}
+        onGoBackButtonClicked = {},
+        onLocationButtonClicked = {}
     )
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,12 +19,15 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
@@ -45,21 +49,22 @@ fun RestaurantScreen(
     modifier: Modifier = Modifier,
     onHomePageButtonClicked: () -> Unit,
     onFavouritePageButtonClicked : () -> Unit,
-    onReservationScreensButtonClicked : () -> Unit,
-    onProfilePageButtonClicked : () -> Unit
+    onBasketScreensButtonClicked : () -> Unit,
+    onProfilePageButtonClicked : () -> Unit,
+    onLocationButtonClicked: () -> Unit
 ) {
     Surface(
         color = colorResource(id = R.color.Alabaster)
     ) {
         Column(modifier = Modifier.background(color = colorResource(id = R.color.Alabaster))) {
-            UpPart()
+            UpPart(onLocationButtonClicked = onLocationButtonClicked )
             Spacer(modifier = Modifier.weight(1f))
             RestaurantInfo()
             Spacer(modifier = Modifier.weight(1f))
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onReservationScreensButtonClicked = onReservationScreensButtonClicked,
+                onBasketScreensButtonClicked = onBasketScreensButtonClicked,
                 onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
@@ -70,7 +75,7 @@ fun RestaurantScreen(
 fun BottomPart(
     onHomePageButtonClicked: () -> Unit,
     onFavouritePageButtonClicked: () -> Unit,
-    onReservationScreensButtonClicked: () -> Unit,
+    onBasketScreensButtonClicked: () -> Unit,
     onProfilePageButtonClicked: () -> Unit,
 ) {
     Row(
@@ -98,7 +103,7 @@ fun BottomPart(
             )
         }
         Spacer(modifier = Modifier.padding(horizontal = 20.dp))
-        IconButton(onClick = onReservationScreensButtonClicked) {
+        IconButton(onClick = onBasketScreensButtonClicked) {
             Icon(
                 Icons.Outlined.ShoppingCart,
                 contentDescription = null,
@@ -265,36 +270,43 @@ fun RestaurantInfo() {
 }
 
 @Composable
-fun UpPart() {
+fun UpPart(
+    onLocationButtonClicked: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.Alabaster))
     ) {
-        Row(
-            modifier = Modifier
-                .clip(shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
-                .padding(start = 10.dp, top = 5.dp, end = 10.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-
-        ){
-            TextField(
-                value = "Location",
-                onValueChange = {}
-            )
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Spacer(modifier = Modifier.weight(0.5f))
+            Column {
+                Button(
+                    onClick = { onLocationButtonClicked() },
+                    modifier = Modifier.padding(5.dp),
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.SkyBlue))
+                ) {
+                    Text(text = "Location")
+                    Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null )
+                }
+                TextField(
+                    value = "Search",
+                    onValueChange = {},
+                    colors = TextFieldDefaults.colors(),
+                    modifier = Modifier
+                        .clip(shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
+                )
+            }
             Spacer(modifier = Modifier.weight(1f))
-            Image(painter = painterResource(id = R.drawable.foodleftover), contentDescription = null,modifier = Modifier.size(60.dp))
-
-        }
-            TextField(
-                value = "Search",
-                onValueChange = {},
-                colors = TextFieldDefaults.colors(),
+            Image(
+                painter = painterResource(id = R.drawable.leftoverlogo_bgremoved),
+                contentDescription = null,
                 modifier = Modifier
-                    .clip(shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
-                    .fillMaxWidth()
+                    .size(90.dp)
+                    .offset(x = (-10).dp, y = (-10).dp)
             )
+        }
+
     }
 }
 
@@ -305,8 +317,9 @@ fun RestaurantScreenPreview() {
     RestaurantScreen(
         onHomePageButtonClicked = {},
         onFavouritePageButtonClicked = {},
-        onReservationScreensButtonClicked = {},
-        onProfilePageButtonClicked = {}
+        onBasketScreensButtonClicked = {},
+        onProfilePageButtonClicked = {},
+        onLocationButtonClicked = {}
     )
 }
 
