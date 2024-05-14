@@ -1,6 +1,6 @@
 namespace CleanArchitecture.Core.Entities
 {
-    public class Address 
+    public class Address : AuditableBaseEntity
     {
         public string AddressID { get; set; }
         public string UserName { get; set; }

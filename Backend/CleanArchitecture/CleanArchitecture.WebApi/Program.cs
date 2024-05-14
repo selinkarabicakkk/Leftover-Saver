@@ -13,14 +13,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
+using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Add configurations
+// Add configurations
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Configuration.AddJsonFile("appsettings.Development.json", optional: true);
 
-// Add services to the container.
+// Add services to the container
 builder.Services.AddApplicationLayer();
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
 builder.Services.AddSwaggerExtension();
@@ -29,9 +30,10 @@ builder.Services.AddApiVersioningExtension();
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
 
-//Build the application
+// Build the application
 var app = builder.Build();
 
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -41,8 +43,8 @@ else
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
-app.UseHttpsRedirection();
 
+app.UseHttpsRedirection();
 app.UseRouting();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthentication();
@@ -56,14 +58,12 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-
-//Initialize Logger
-
+// Initialize Logger
 Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(app.Configuration)
-                .CreateLogger();
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
 
-//Seed Default Data
+// Seed Default Data
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -73,9 +73,8 @@ using (var scope = app.Services.CreateScope())
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-        await CleanArchitecture.Infrastructure.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
-        await CleanArchitecture.Infrastructure.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
-        await CleanArchitecture.Infrastructure.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+        await SeedDefaultDataAsync(userManager, roleManager);
+
         Log.Information("Finished Seeding Default Data");
         Log.Information("Application Starting");
     }
@@ -89,5 +88,13 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-//Start the application
+// SeedDefaultDataAsync method
+ static async Task SeedDefaultDataAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+{
+    await CleanArchitecture.Infrastructure.Seeds.DefaultRoles.SeedAsync(userManager, roleManager);
+    await CleanArchitecture.Infrastructure.Seeds.DefaultSuperAdmin.SeedAsync(userManager, roleManager);
+    await CleanArchitecture.Infrastructure.Seeds.DefaultBasicUser.SeedAsync(userManager, roleManager);
+}
+
+// Start the application
 app.Run();
