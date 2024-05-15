@@ -31,7 +31,7 @@ namespace CleanArchitecture.Core.Features.Customer.Commands.CreateCustomer
                 PhoneNumber = request.PhoneNumber,
                 Email = request.Email,
                 Password = request.Password,
-                isEnabled = true,
+               // isEnabled = true,
 
             }) ;
             return customer.UserName;

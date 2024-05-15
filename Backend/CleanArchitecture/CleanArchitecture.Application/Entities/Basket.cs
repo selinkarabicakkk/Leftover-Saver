@@ -2,7 +2,7 @@
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class Basket
+    public class Basket:AuditableBaseEntity
     {
         public string BasketID { get; set; }
         public string UserName { get; set; }

@@ -1,5 +1,4 @@
-using CleanArchitecture.Core.Features.Categories.Commands.CreateCategory;
-using CleanArchitecture.Core.Features.Categories.Queries.GetAllCategories;
+
 using CleanArchitecture.Core.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

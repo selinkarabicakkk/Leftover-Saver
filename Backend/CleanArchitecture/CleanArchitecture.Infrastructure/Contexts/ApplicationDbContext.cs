@@ -22,8 +22,8 @@ namespace CleanArchitecture.Infrastructure.Contexts
             _authenticatedUser = authenticatedUser;
         }
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        //public DbSet<Category> Categories { get; set; }
+        //public DbSet<Product> Products { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Basket> Baskets { get; set; }
@@ -55,7 +55,7 @@ namespace CleanArchitecture.Infrastructure.Contexts
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
+            //builder.Entity
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "User");

@@ -2,7 +2,7 @@
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class Reservation
+    public class Reservation: AuditableBaseEntity
     {
         public string reservationID { get; set; }
         public string UserName { get; set; } // Foreign key to Business
