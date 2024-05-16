@@ -22,9 +22,6 @@ namespace CleanArchitecture.Infrastructure.Contexts
             _authenticatedUser = authenticatedUser;
         }
 
-        //public DbSet<Category> Categories { get; set; }
-        //public DbSet<Product> Products { get; set; }
-
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
