@@ -29,7 +29,7 @@ namespace CleanArchitecture.Infrastructure.Contexts
         public DbSet<Favourites> Favourites { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet <Restaurant> Restaurants { get; set; }
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
