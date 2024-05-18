@@ -50,6 +50,8 @@ namespace CleanArchitecture.Infrastructure.Contexts
             }
             return base.SaveChangesAsync(cancellationToken);
         }
+
+        // bu method database deki verilerin özelliklerini ayarlar hashKey,maxLength gibi daatabase deki gibi
         protected override void OnModelCreating(ModelBuilder builder)
         {
             //builder.Entity
