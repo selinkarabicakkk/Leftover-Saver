@@ -1,16 +1,12 @@
 import './App.css';
-import BasicHeader from './Components/BasicHeader/BasicHeader.jsx';
-import LoginPage from './Components/LoginPage/LoginPage.jsx';
+import LandingPage from './Components/LandingPage/LandingPage';
 
 function App() {
   return (
     <div>
 
+      <LandingPage />
       
-      <BasicHeader />
-      <LoginPage />
-
-
     </div>
   );
 }
