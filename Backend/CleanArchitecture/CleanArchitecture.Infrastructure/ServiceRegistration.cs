@@ -98,7 +98,8 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient<IDateTimeService, DateTimeService>();
             services.AddTransient<IEmailService, EmailService>();
 
-
+            services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+            services.AddTransient<IRestaurantRepositoryAsync, RestaurantRepositoryAsync>();
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
