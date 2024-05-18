@@ -1,0 +1,28 @@
+
+body {
+  background-color: #faf8f3;
+}
+
+img {
+  width: 20%;
+
+}
+
+.header {
+  font-size: 28px;
+  text-align: left;
+  display: flex;
+  font-family:  'Roboto', sans-serif;
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4.5rem;
+}
+
+.second-row {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 4.5rem;
+}
