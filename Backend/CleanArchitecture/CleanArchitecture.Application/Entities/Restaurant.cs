@@ -1,8 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class Restaurant
+    public class Restaurant: AuditableBaseEntity
     {
         public string RestaurantID { get; set; }
         public string Name { get; set; } // Foreign key to Business

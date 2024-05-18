@@ -1,7 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+
 namespace CleanArchitecture.Core.Entities
 {
     public class Address : AuditableBaseEntity
     {
+       
         public string AddressID { get; set; }
         public string UserName { get; set; }
         public string AddressDefinition { get; set; }

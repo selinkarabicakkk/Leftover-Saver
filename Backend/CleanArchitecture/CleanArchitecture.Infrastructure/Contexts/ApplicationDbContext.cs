@@ -22,9 +22,6 @@ namespace CleanArchitecture.Infrastructure.Contexts
             _authenticatedUser = authenticatedUser;
         }
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
-
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
@@ -32,7 +29,7 @@ namespace CleanArchitecture.Infrastructure.Contexts
         public DbSet<Favourites> Favourites { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet <Restaurant> Restaurants { get; set; }
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -55,7 +52,7 @@ namespace CleanArchitecture.Infrastructure.Contexts
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-
+            //builder.Entity
             builder.Entity<ApplicationUser>(entity =>
             {
                 entity.ToTable(name: "User");

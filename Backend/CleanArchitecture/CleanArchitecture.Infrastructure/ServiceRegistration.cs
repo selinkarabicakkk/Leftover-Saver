@@ -101,8 +101,8 @@ namespace CleanArchitecture.Infrastructure
 
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
-            services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
-            services.AddTransient<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
+            //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
+            //services.AddTransient<ICategoryRepositoryAsync, CategoryRepositoryAsync>();
             #endregion
         }
     }

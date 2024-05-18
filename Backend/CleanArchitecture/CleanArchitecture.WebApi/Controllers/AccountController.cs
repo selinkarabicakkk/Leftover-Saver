@@ -11,7 +11,7 @@ namespace CleanArchitecture.WebApi.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService assccountService)
+        public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
         }
