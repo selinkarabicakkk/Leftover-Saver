@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,3 +16,4 @@ namespace CleanArchitecture.Core.DTOs.Restaurant
         public double Rate { get; set; }
     }
 }
+*/

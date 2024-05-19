@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using CleanArchitecture.Core.Wrappers;
 using MediatR;
 using System;
