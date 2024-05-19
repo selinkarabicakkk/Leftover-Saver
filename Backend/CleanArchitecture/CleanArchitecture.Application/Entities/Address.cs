@@ -10,7 +10,6 @@ namespace CleanArchitecture.Core.Entities
     public class Address : AuditableBaseEntity
     {
        
-        public string AddressID { get; set; }
         public string UserName { get; set; }
         public string AddressDefinition { get; set; }
         public string City { get; set; }

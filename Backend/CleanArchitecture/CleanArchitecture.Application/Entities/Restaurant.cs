@@ -9,7 +9,6 @@ namespace CleanArchitecture.Core.Entities
 
     public class Restaurant: AuditableBaseEntity
     {
-        public string RestaurantID { get; set; }
         public string Name { get; set; } // Foreign key to Business
         public string Email { get; set; }
         public string Password { get; set; }

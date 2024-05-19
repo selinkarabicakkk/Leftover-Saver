@@ -10,7 +10,7 @@ namespace CleanArchitecture.Core.Entities
 {
     public class Item: AuditableBaseEntity
     {
-        public string ItemID { get; set; }
+       
         public string RestaurantID { get; set; } // Foreign key to Business
         public string itemName { get; set; }
         public double price { get; set; }
