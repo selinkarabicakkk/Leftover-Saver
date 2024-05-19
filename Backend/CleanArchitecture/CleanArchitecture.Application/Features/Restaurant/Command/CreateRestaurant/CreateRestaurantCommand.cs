@@ -12,7 +12,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
     public class CreateRestaurantCommand : IRequest<int>
     {
 
-        public string RestaurantID { get; set; }
+        
         public string Name { get; set; } // Foreign key to Business
         public string Email { get; set; }
         public string Password { get; set; }
@@ -41,7 +41,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
         {
             var newRestaurant = new Entities.Restaurant
             {
-                RestaurantID = request.RestaurantID,
+               
                 Name = request.Name,
                 Email= request.Email,
                 Password=request.Password,
