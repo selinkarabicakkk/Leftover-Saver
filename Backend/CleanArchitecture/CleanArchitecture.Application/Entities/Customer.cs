@@ -21,7 +21,7 @@ namespace CleanArchitecture.Core.Entities
         public int ReservationId { get; set; }
 
         public Address Address { get; set; }
-        public Favorites Favorites { get; set; }
+        public Favourites Favorites { get; set; }
         public Basket Basket { get; set; }
         public Reservation Reservation { get; set; }
 

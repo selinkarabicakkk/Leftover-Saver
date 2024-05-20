@@ -1,9 +1,9 @@
 
 using CleanArchitecture.Core.Features.Address.Command.DeleteAddress;
 using CleanArchitecture.Core.Features.Address.Command.UpdateAddress;
-
-using CleanArchitecture.Core.Features.Address.Command.CreateAddress;
 using CleanArchitecture.Core.Features.Address.Query.GetAllAddresses;
+using CleanArchitecture.Core.Features.Address.Command.CreateAddress;
+using CleanArchitecture.Core.Features.Address.Query.GetAddressById;
 using CleanArchitecture.Core.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -39,7 +39,7 @@ using System.Threading.Tasks;*/
           public async Task<PagedResponse<IEnumerable<GetAllAddressesViewModel>>> Get([FromQuery] GetAllAddressesParameter filter)
           {
 
-             return await Mediator.Send(new GetAllAddressesQuery() { pageSize = filter.PageSize, pageNumber = filter.PageNumber });
+             return await Mediator.Send(new GetAllAddressesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber });
           }
 
           [HttpDelete("{id}")]
