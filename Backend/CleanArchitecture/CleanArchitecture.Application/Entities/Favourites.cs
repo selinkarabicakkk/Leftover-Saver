@@ -10,7 +10,9 @@ namespace CleanArchitecture.Core.Entities
     public class Favourites: AuditableBaseEntity
     {
        
-        public string UserName { get; set; }
+       public int RestaurantId { get; set; }
+
+        public Restaurant Restaurant { get; set; }
 
 
         // Other properties

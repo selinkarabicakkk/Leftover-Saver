@@ -7,13 +7,9 @@ using System.Text;
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class BasketItem: AuditableBaseEntity
+    public class BasketItem: Item
     {
-        public int Id { get; set; }
-        // Foreign key to Product
-        public int PieceNumber { get; set; }
-        public string BasketID { get; set; }
-
+        public Item Item { get; set; }
         // Other properties
     }
 }

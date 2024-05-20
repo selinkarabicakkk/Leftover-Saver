@@ -9,10 +9,14 @@ namespace CleanArchitecture.Core.Entities
 
     public class Reservation: AuditableBaseEntity
     {
-        
-        public string UserName { get; set; } // Foreign key to Business
-        public string RestaurantID { get; set; }
-        public double price { get; set; }
+        public int RestaurantId { get; set; }
+        public double totalPrice { get; set; }
+        public int itemId { get; set; }
+        public bool isDelivered { get; set; }
+        public bool isCancelled { get; set; }
+
+        public Restaurant Restaurant { get; set; }
+        public List<Item> Items { get; set; }
 
         // Other properties
     }
