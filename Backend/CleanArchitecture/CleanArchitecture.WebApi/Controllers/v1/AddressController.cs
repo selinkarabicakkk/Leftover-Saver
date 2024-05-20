@@ -39,7 +39,7 @@ using System.Threading.Tasks;*/
           public async Task<PagedResponse<IEnumerable<GetAllAddressesViewModel>>> Get([FromQuery] GetAllAddressesParameter filter)
           {
 
-             return await Mediator.Send(new GetAllAddressesQuery() { pageSize = filter.PageSize, pageNumber = filter.PageNumber });
+             return await Mediator.Send(new GetAllAddressesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber });
           }
 
           [HttpDelete("{id}")]

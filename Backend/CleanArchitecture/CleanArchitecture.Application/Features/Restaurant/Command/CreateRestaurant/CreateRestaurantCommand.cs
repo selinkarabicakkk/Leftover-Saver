@@ -6,21 +6,18 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using CleanArchitecture.Core.Entities;
 
 namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
 {
     public class CreateRestaurantCommand : IRequest<int>
     {
-
-        
+        public int Id { get; set; }
         public string Name { get; set; } // Foreign key to Business
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string AddressID { get; set; }
         public string StoreType { get; set; }
-        public double Rate { get; set; }
         //public LinkedList<Item> Items { get; set; }
 
 
@@ -50,7 +47,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
                 PhoneNumber=request.PhoneNumber,
                 AddressID=request.AddressID,
                 StoreType=request.StoreType,
-                Rate= request.Rate
+                
     };
 
             await _restaurantRepositoryAsync.AddAsync(newRestaurant);

@@ -22,7 +22,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant
         public string PhoneNumber { get; set; }
         public string AddressID { get; set; }
         public string StoreType { get; set; }
-        public double Rate { get; set; }
+      
         public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCommand, Response<int>>
         {
             private readonly IRestaurantRepositoryAsync _restaurantRepository;
@@ -37,7 +37,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant
                 if (restaurant == null) throw new EntityNotFoundException("restaurant", command.Id);
 
                 restaurant.Name = command.Name;
-                restaurant.Rate = command.Rate;
+             
                 restaurant.Email = command.Email;
                 restaurant.Password = command.Password;
                 restaurant.PhoneNumber = command.PhoneNumber;
