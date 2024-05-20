@@ -16,7 +16,7 @@ const BusinessMainPage = () => {
           <div className="own">
             <h1>Own a Business</h1>
             <p>Welcome to Leftover Saver! Sign up, list your products, manage inventory, monitor sales, and receive reservation notifications. Let's reduce food waste and grow your business together!</p>
-            <Link to="/business-register"><button>Register Your Business</button></Link>
+            <Link to="/sign-up"><button>Register Your Business</button></Link>
           </div>
           <div className="phone">
             <img src={PixelPhone} alt="Pixel Phone" />
