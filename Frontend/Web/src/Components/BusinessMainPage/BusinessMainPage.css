@@ -1,0 +1,49 @@
+.own-a-business {
+    margin-top: 5rem;
+    padding: 3rem 5rem;
+    background-color: #74CADA;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 10rem;
+}
+
+.own {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.own h1 {
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.own button {
+    text-decoration: none;
+    color: #ffffff;
+    border: none;
+    border-radius: 13px;
+    font-size: 1rem;
+    background-color: #0097B2;
+    padding: 23px 27px;
+    font-weight: bold;
+}
+
+.own button:hover {
+    background-color: #014c5a;
+    cursor: pointer;
+}
+
+.own-a-business .phone img {
+    width: 13rem;
+    margin-bottom: -10rem;
+}  
+
+.guideline {
+    padding: 1rem 5rem 7rem;
+}
+
+.guideline ul li p {
+    padding-left: 1rem;
+}
