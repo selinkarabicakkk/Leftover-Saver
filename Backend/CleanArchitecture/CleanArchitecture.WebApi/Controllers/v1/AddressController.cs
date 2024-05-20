@@ -3,7 +3,7 @@ using CleanArchitecture.Core.Features.Address.Command.DeleteAddress;
 using CleanArchitecture.Core.Features.Address.Command.UpdateAddress;
 using CleanArchitecture.Core.Features.Address.Query.GetAllAddresses;
 using CleanArchitecture.Core.Features.Address.Command.CreateAddress;
-//using CleanArchitecture.Core.Features.Address.Query.GetAllAddresses;
+using CleanArchitecture.Core.Features.Address.Query.GetAddressById;
 using CleanArchitecture.Core.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
