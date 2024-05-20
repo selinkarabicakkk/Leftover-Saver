@@ -1,5 +1,8 @@
 import React from 'react';
 import Logo from '../../Assets/images/AppLogo.jpg';
+import { Link } from 'react-router-dom';
+
+
 import './Header.css'; 
 
 const Header = () => {
@@ -9,12 +12,12 @@ const Header = () => {
                 <div className='exceptLogo'>
 
                     <div className='leftdiv'>
-                        <a href="#" className="consumer">Consumer</a>
-                        <a href="#" className="business">Business</a>     
+                        <Link to="/consumer"><span className='consumer'>Consumer</span></Link>
+                        <Link to="/business"><span className='business'>Business</span></Link>
                     </div>
 
                     <div className='rightdiv'>
-                        <button>Register Your Business</button>
+                        <Link to="/business-register"><button>Register Your Business</button></Link>
                         <button>Download the App</button>
                     </div>
 
