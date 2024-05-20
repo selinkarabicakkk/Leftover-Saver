@@ -41,7 +41,7 @@
 }  
 
 .guideline {
-    padding: 1rem 5rem 7rem;
+    padding: 1rem 5rem 4rem;
 }
 
 .guideline ul li p {
@@ -54,4 +54,34 @@
 
 .faq h2 {
     text-align: center;
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.faq-items ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10rem;
+    row-gap: 2rem;
+}
+
+.faq-items h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.faq-item div {
+    display: flex;
+    gap: 1rem;
+}   
+
+.question {
+    font-family: cursive, sans-serif;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
