@@ -8,17 +8,18 @@ import './Header.css';
 const Header = () => {
     return (
             <div className="header">
-                <img className="logo" src={Logo} alt="Logo" />
+                <Link className='logo' to="/"><img src={Logo} alt="Logo" /></Link>
+                
                 <div className='exceptLogo'>
 
                     <div className='leftdiv'>
-                        <Link to="/consumer"><span className='consumer'>Consumer</span></Link>
-                        <Link to="/business"><span className='business'>Business</span></Link>
+                        <Link className='consumer' to="/consumer"><span>Consumer</span></Link>
+                        <Link className='business' to="/business"><span>Business</span></Link>
                     </div>
 
                     <div className='rightdiv'>
-                        <Link to="/business-register"><button>Register Your Business</button></Link>
-                        <button>Download the App</button>
+                        <Link to="/sign-in"><button>Sign In</button></Link>
+                        <Link to="/sign-up"><button>Sign Up</button></Link>
                     </div>
 
                 </div>

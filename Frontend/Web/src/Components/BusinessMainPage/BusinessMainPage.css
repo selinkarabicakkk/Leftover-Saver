@@ -47,3 +47,11 @@
 .guideline ul li p {
     padding-left: 1rem;
 }
+
+.faq {
+    padding: 1rem 5rem 7rem;
+}
+
+.faq h2 {
+    text-align: center;
+}

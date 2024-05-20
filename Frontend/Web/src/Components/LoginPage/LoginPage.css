@@ -3,81 +3,83 @@ body {
   background-color: #faf8f3;
 }
 
-  .header {
-    font-size: 40px;
-    text-align: left;
-    display: flex;
-    font-family:  'Roboto', sans-serif;
-  }
+.caption {
+  font-size: 40px;
+  text-align: left;
+  display: flex;
+  font-family:  'Roboto', sans-serif;
+}
 
-  .login-page {
-    margin-top: 4.5rem;
-  }
-  
-  .login-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 8rem;
-  }
-  
-  .left-column h2 {
-    margin-bottom: 4rem;
-  }
-  
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .input-container input {
-    padding: 16px 16px 14px;
-    margin-bottom: 16px;
-    border-radius: 22px;
-    border: 1px solid #ccc;
-  }
+.login-page {
+  margin-top: 4.5rem;
+}
 
-  .email-input,
-  .password-input {
-    width: 75%;
-  }
-  
-  .forgot-password a {
-    color: #027589;
-    text-decoration: none;
-  }
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 8rem;
+  margin-bottom: 8rem;
+}
 
-  .forgot-password a:hover {
-    text-decoration: underline;
-  }
-  
-  .right-column img {
-    width: 40rem;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 6rem;
-    margin-top: 8%;
-  }
+.left-column h2 {
+  margin-bottom: 4rem;
+}
 
-  .buttons button {
-    padding: 16px 41px;
-    border: none;
-    background-color: #027589;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 30px;
-    cursor: pointer;
-  }
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
 
-  .buttons button:hover {
-    background-color: #025e6b;
-  }
+.input-container input {
+  padding: 16px 16px 14px;
+  margin-bottom: 16px;
+  border-radius: 22px;
+  border: 1px solid #ccc;
+}
 
+.email-input,
+.password-input {
+  width: 75%;
+}
 
-  .login-button:hover,
-.sign-up-button:hover {
+.forgot-password a {
+  color: #027589;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.right-column img {
+  width: 40rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+}
+
+.buttons button {
+  padding: 18px 30px;
+  border: none;
   background-color: #027589;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: #025e6b;
+}
+
+
+.login-button:hover,
+.sign-up-button:hover {
+background-color: #027589;
 }

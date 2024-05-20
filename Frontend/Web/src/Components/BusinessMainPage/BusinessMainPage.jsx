@@ -48,6 +48,30 @@ const BusinessMainPage = () => {
             </li>
           </ul>
         </div>
+
+        <div className="faq">
+          <h2>Frequently Asked Questions</h2>
+          {/* <div className="faq-item">
+            <h3>How do I register my business on Leftover Saver?</h3>
+            <p>Visit the registration page on our website and fill out the required information to create your business account. Once registered, you can set up your profile and start listing your leftover products.</p>
+          </div>
+          <div className="faq-item">
+            <h3>What types of products can I list on Leftover Saver?</h3>
+            <p>You can list a variety of leftover products on our platform, including food items, beverages, packaged goods, and more. Make sure to provide accurate descriptions and pricing details to attract customers.</p>
+          </div>
+          <div className="faq-item">
+            <h3>How can I manage my inventory on Leftover Saver?</h3>
+            <p>Use the inventory management tools on your dashboard to update product listings, adjust quantities, or remove products that are no longer available. Regularly updating your inventory helps you maintain an accurate and up-to-date product catalog.</p>
+          </div>
+          <div className="faq-item">
+            <h3>Can I offer discounts on my leftover products?</h3>
+            <p>Yes, you can create discount offers for your products to attract more customers and increase sales. Set up promotional discounts through your dashboard and monitor their impact on customer engagement and sales performance.</p>
+          </div>
+          <div className="faq-item">
+            <h3>How do I receive notifications for reservations?</h3>
+            <p>Enable notifications on your account settings to receive alerts for new reservations and upcoming pick-up times. Stay informed and prepare your products in advance to ensure a smooth and efficient handover to the customers.</p>
+          </div> */}
+        </div>
       <Footer />
     </>
   )

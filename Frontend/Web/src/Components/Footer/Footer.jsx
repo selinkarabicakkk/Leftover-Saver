@@ -21,16 +21,16 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="socials">
-                    <i class="fa-brands fa-youtube fa-2xl" style={{color: "#0097B2"}}></i>
-                    <i class="fa-brands fa-linkedin fa-2xl" style={{color: "#0097B2"}}></i>
-                    <i class="fa-brands fa-instagram fa-2xl" style={{color: "#0097B2"}}></i>
-                    <i class="fa-brands fa-twitter fa-2xl" style={{color: "#0097B2"}}></i>
+                    <i className="fa-brands fa-youtube fa-2xl" style={{color: "#0097B2"}}></i>
+                    <i className="fa-brands fa-linkedin fa-2xl" style={{color: "#0097B2"}}></i>
+                    <i className="fa-brands fa-instagram fa-2xl" style={{color: "#0097B2"}}></i>
+                    <i className="fa-brands fa-twitter fa-2xl" style={{color: "#0097B2"}}></i>
                 </div>
             </div>
             <div className='bottom'>
                 <div className="buttons">
-                    <button> Download on Play Store <i class="fa-brands fa-google-play fa-2xl"></i></button>
-                    <button>Download on App Store <i class="fa-brands fa-apple fa-2xl"></i></button>
+                    <button> Download on Play Store <i className="fa-brands fa-google-play fa-2xl"></i></button>
+                    <button>Download on App Store <i className="fa-brands fa-apple fa-2xl"></i></button>
                 </div>
                 <span>Copyrights 2024 All Rights Reserved</span>
             </div>
