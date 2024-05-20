@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CleanArchitecture.Core.Entities;
 
 namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
 {
@@ -20,6 +21,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
         public string AddressID { get; set; }
         public string StoreType { get; set; }
         public double Rate { get; set; }
+        //public LinkedList<Item> Items { get; set; }
 
 
     }

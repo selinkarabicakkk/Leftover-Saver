@@ -16,6 +16,7 @@ namespace CleanArchitecture.Core.Entities
         public string AddressID { get; set; }
         public string StoreType { get; set; }
         public double Rate { get; set; }
+       // public LinkedList<Item> Items { get; set; }
         // Other properties
     }
 }
