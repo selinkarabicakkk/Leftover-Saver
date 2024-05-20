@@ -100,6 +100,7 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IRestaurantRepositoryAsync, RestaurantRepositoryAsync>();
+            services.AddScoped<IItemRepositoryAsync, ItemRepositoryAsync>();
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
