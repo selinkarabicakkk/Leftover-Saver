@@ -3,6 +3,8 @@ using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Features.Item.Command.CreateItem;
 using CleanArchitecture.Core.Features.Item.Query.GetAllItem;
 using CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant;
+using CleanArchitecture.Core.Features.Address.Query.GetAllAddresses;//
+using CleanArchitecture.Core.Features.Address.Command.CreateAddress;//
 using CleanArchitecture.Core.Features.Restaurant.Query.GetAllRestaurants;
 //using CleanArchitecture.Core.Features.Categories.Queries.GetAllCategories;
 //using CleanArchitecture.Core.Features.Products.Commands.CreateProduct;
@@ -14,12 +16,11 @@ namespace CleanArchitecture.Core.Mappings
     {
         public GeneralProfile()
         {
-            /*  CreateMap<Product, GetAllProductsViewModel>().ReverseMap();
-              CreateMap<CreateProductCommand, Product>();
-              CreateMap<GetAllProductsQuery, GetAllProductsParameter>();
-              CreateMap<GetAllCategoriesQuery, GetAllCategoriesParameter>();
-              CreateMap<Category, GetAllCategoriesViewModel>().ReverseMap();
-            */
+
+            CreateMap<Address, GetAllAddressesViewModel>().ReverseMap();
+            CreateMap<CreateAddressCommand, Address>();
+            CreateMap<GetAllAddressesQuery, GetAllAddressesParameter>();
+
 
             CreateMap<Restaurant, GetAllRestaurantsViewModel>().ReverseMap();
             CreateMap<CreateRestaurantCommand, Restaurant>();

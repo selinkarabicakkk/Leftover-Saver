@@ -20,5 +20,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
         {
             addresses = dbContext.Set<Address>();
         }
+
+        public async Task<List<Address>> GetAllAddressesByUserNameAsync(string userName)
+        {
+            return await addresses.Where(a => a.UserName == userName).ToListAsync();
+        }
     }
 }
