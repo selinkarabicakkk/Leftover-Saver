@@ -58,3 +58,9 @@ h1 {
 .third-row-right {
   padding-left: 3rem;
 }
+
+.first-row-right p  , .second-row-left p , .third-row-right p {
+  font-size: 16px;
+  line-height: 1.6rem;
+  font-family: 'fangsong' , sans-serif;
+}
