@@ -44,7 +44,7 @@ const BusinessMainPage = () => {
       </div>
       <div className="guideline">
         <h2>Guide to Owning a Business on Leftover Saver</h2>
-        <p>Welcome to the Leftover Saver community! This guide will walk you through the steps to successfully set up and manage your business on our platform, helping you reduce food waste and reach more customers with your leftover products.</p>
+        <p style={{fontSize: '1.2rem'}}>Welcome to the Leftover Saver community! This guide will walk you through the steps to successfully set up and manage your business on our platform, helping you reduce food waste and reach more customers with your leftover products.</p>
         <ul>
           <li>
             <h3>Step 1: Sign Up and Profile Setup</h3>
