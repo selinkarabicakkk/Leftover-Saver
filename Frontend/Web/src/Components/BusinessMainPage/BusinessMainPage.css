@@ -19,6 +19,12 @@
     margin-bottom: 0;
 }
 
+.own p  {
+    font-family: 'math' , sans-serif;
+    line-height: 1.7rem;
+    font-size: 1.1rem;
+}
+
 .own button {
     text-decoration: none;
     color: #ffffff;
@@ -40,12 +46,30 @@
     margin-bottom: -10rem;
 }  
 
+
 .guideline {
     padding: 1rem 5rem 4rem;
 }
 
+.guideline p {
+    font-family: 'math' , sans-serif;
+    line-height: 1.7rem;
+
+}
+
+.guideline h2 {
+    color: #014c5a;
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
 .guideline ul li p {
     padding-left: 1rem;
+}
+
+.guideline ul li h3{
+    color: #014c5a;
 }
 
 .faq {
@@ -57,6 +81,7 @@
     font-size: 3rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
+    color: #014c5a;;
 }
 
 .faq-items ul {
