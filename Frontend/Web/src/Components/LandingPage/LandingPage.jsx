@@ -6,9 +6,15 @@ import Footer from '../Footer/Footer';
 import Groceries from '../../Assets/images/Groceries.jpg';
 import Delivery from '../../Assets/images/Delivery.jpg';
 import Saveameal from '../../Assets/images/Saveameal.jpg';
+import { useEffect } from 'react';
 
 const LandingPage = () => {
  
+
+  useEffect(() => {
+    document.title = 'FoodLeftover';
+  }, []);
+
   return (
     <>
       <Header/>

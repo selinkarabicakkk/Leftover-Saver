@@ -7,9 +7,14 @@ import Footer from '../Footer/Footer';
 import Handshake from '../../Assets/images/handshake.png';
 import Heart from '../../Assets/images/heart.png';
 import LoginScreen from '../../Assets/images/LoginScreen.png';
-
+import { useEffect } from 'react';
 const ConsumerPage = () => {
- 
+
+  
+  useEffect(() => {
+    document.title = 'FoodLeftover | Consumer Page';
+  }, []);
+
   return (
     <>
       <Header/>

@@ -6,10 +6,15 @@ import './LoginPage.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Login from '../../Assets/images/Login.jpg';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    document.title = 'FoodLeftover | Login';
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
