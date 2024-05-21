@@ -6,6 +6,7 @@ import './BusinessMainPage.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import PixelPhone from '../../Assets/images/pixel8.png';
+import { useEffect } from 'react';
 
 const BusinessMainPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -22,6 +23,11 @@ const BusinessMainPage = () => {
   const handleToggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  
+  useEffect(() => {
+    document.title = 'FoodLeftover | Business Main Page';
+  }, []);
  
   return (
     <>

@@ -4,6 +4,7 @@ import './BusinessRegisterPage.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Menu from '../../Assets/images/menu.jpg';
+import { useEffect } from 'react';
 
 const BusinessRegisterPage = () => {
   const [storeName, setStoreName] = useState('');
@@ -20,6 +21,10 @@ const BusinessRegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
   }
+
+  useEffect(() => {
+    document.title = 'FoodLeftover | Business Register Page';
+  }, []);
 
   return (
     <>
@@ -66,8 +71,11 @@ const BusinessRegisterPage = () => {
         <div className="submit-button">
           <button type='submit'>Register</button>
         </div>
+
+        <Footer> </Footer>
+
       </form>
-      {/* <Footer /> */}
+      
     </>
   )
       
