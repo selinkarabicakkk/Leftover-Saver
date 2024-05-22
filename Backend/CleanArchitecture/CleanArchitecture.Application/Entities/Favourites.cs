@@ -12,7 +12,8 @@ namespace CleanArchitecture.Core.Entities
        
        public int RestaurantId { get; set; }
 
-        public Restaurant Restaurant { get; set; }
+       public int CustomerId { get; set; }
+       public Restaurant Restaurant { get; set; }
 
 
         // Other properties

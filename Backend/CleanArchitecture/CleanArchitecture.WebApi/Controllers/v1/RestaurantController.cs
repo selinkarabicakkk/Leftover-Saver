@@ -3,6 +3,7 @@ using CleanArchitecture.Core.Features.Restaurant.Command.DeleteRestaurant;
 using CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant;
 using CleanArchitecture.Core.Features.Restaurant.Query.GetAllRestaurants;
 using CleanArchitecture.Core.Features.Restaurant.Query.GetRestaurantById;
+using CleanArchitecture.Core.Features.Restaurant.Query.GetRestaurantsByName;
 using CleanArchitecture.Core.Wrappers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -55,6 +56,13 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await Mediator.Send(new GetRestaurantByIdQuery { Id = id }));
+        }
+
+        // GET /api/restaurant/{name}
+        [HttpGet("{name}")]
+        public async Task<PagedResponse<IEnumerable<GetAllRestaurantsViewModel>>> Get([FromQuery] GetRestaurantsByNameParameter filter)
+        {
+            return await Mediator.Send(new GetRestaurantsByNameQuery() { SearchString= filter.SearchString,PageSize=filter.PageSize, PageNumber = filter.PageNumber });
         }
     }
 }
