@@ -47,6 +47,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 PhoneNumber = p.PhoneNumber,
                 AddressID = p.AddressID,
                 StoreType = p.StoreType,
+                StreetInformation = p.StreetInformation,
+                postalCode = p.postalCode,
+                City = p.City,
+                Country = p.Country,
 
 
             }).ToListAsync();
