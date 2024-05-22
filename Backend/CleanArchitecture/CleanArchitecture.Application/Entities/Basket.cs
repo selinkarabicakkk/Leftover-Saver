@@ -9,10 +9,10 @@ namespace CleanArchitecture.Core.Entities
 
     public class Basket:AuditableBaseEntity
     {
-        //public List<BasketItem> Items { get; set; }
-         public int itemID { get; set; } // Foreign key to Business
+         public int itemID { get; set; } 
         public double price { get; set; }
+        public int customerId { get; set; }
         public List<BasketItem> BasketItems { get; set; }
-        // Other properties
+
     }
 }

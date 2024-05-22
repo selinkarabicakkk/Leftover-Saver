@@ -13,6 +13,8 @@ namespace CleanArchitecture.Core.Entities
         public int pieceNumber { get; set; }
         public Basket Basket { get; set; }  
         public Item Item { get; set; }
-        // Other properties
+
+       
+        
     }
 }
