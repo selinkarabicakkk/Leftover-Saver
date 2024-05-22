@@ -11,12 +11,15 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
 {
     public class CreateRestaurantCommand : IRequest<int>
     {
-        public int Id { get; set; }
+        
         public string Name { get; set; } // Foreign key to Business
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public string AddressID { get; set; }
+        public string StreetInformation { get; set; }
+        public string City { get; set; }
+        public string postalCode { get; set; }
+        public string Country { get; set; }
         public string StoreType { get; set; }
         //public LinkedList<Item> Items { get; set; }
 
@@ -45,7 +48,10 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
                 Email= request.Email,
                 Password=request.Password,
                 PhoneNumber=request.PhoneNumber,
-                AddressID=request.AddressID,
+                StreetInformation=request.StreetInformation,
+                City=request.City,
+                postalCode=request.postalCode,
+                Country=request.Country,
                 StoreType=request.StoreType,
                 
     };

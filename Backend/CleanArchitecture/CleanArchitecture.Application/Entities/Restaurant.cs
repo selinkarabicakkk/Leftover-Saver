@@ -13,7 +13,10 @@ namespace CleanArchitecture.Core.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public string AddressID { get; set; }
+        public string StreetInformation { get; set; }
+        public string City { get; set; }    
+        public string postalCode { get; set; }
+        public string Country { get; set; }
         public string StoreType { get; set; }
 
         public List<Item> Items { get; set; }

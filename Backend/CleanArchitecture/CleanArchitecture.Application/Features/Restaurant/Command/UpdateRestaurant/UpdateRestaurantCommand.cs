@@ -15,12 +15,15 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant
 {
     public class UpdateRestaurantCommand : IRequest<Response<int>>
     {
-        public int Id { get; set; }
+     public int Id { get; set; }
         public string Name { get; set; } 
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public string AddressID { get; set; }
+        public string StreetInformation { get; set; }
+        public string City { get; set; }
+        public string postalCode { get; set; }
+        public string Country { get; set; }
         public string StoreType { get; set; }
       
         public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCommand, Response<int>>
@@ -37,11 +40,13 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant
                 if (restaurant == null) throw new EntityNotFoundException("restaurant", command.Id);
 
                 restaurant.Name = command.Name;
-             
                 restaurant.Email = command.Email;
                 restaurant.Password = command.Password;
                 restaurant.PhoneNumber = command.PhoneNumber;
-                restaurant.AddressID = command.AddressID;
+                restaurant.City = command.City;
+                restaurant.postalCode = command.postalCode;
+                restaurant.Country = command.Country;
+                restaurant.StreetInformation = command.StreetInformation;
                 restaurant.StoreType = command.StoreType;
 
                 await _restaurantRepository.UpdateAsync(restaurant);
