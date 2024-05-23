@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Reflection.Emit;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 namespace CleanArchitecture.Infrastructure.Contexts
 {
@@ -116,6 +120,10 @@ namespace CleanArchitecture.Infrastructure.Contexts
             base.OnModelCreating(builder);
         }
 
+<<<<<<< Updated upstream
+=======
+        //db hatasından yeni açtım bu metodu
+>>>>>>> Stashed changes
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -130,6 +138,9 @@ namespace CleanArchitecture.Infrastructure.Contexts
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     }
 }
