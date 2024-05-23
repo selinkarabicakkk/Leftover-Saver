@@ -31,7 +31,9 @@ namespace CleanArchitecture.Core.Mappings
             CreateMap<CreateItemCommand, Item>();
             CreateMap<GetAllItemsQuery, GetAllItemsParameter>();
 
-            CreateMap<Favourites, GetAllFavouriteViewModel>().ReverseMap();
+            CreateMap<Favourites, GetAllFavouriteViewModel>()
+                .ForMember(dest => dest.RestaurantName, opt => opt.MapFrom(src => src.Restaurant.Name))
+                .ReverseMap();
             CreateMap<AddFavouriteCommand, Favourites>();
             CreateMap<GetAllFavouriteQuery, GetAllFavouriteParameter>();
         }

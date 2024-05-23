@@ -27,6 +27,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public async Task<PagedResponse<IEnumerable<GetAllFavouriteViewModel>>> GetAllFavorites(int customerId, int pageNumber, int pageSize)
         {
             IQueryable<Favourites> favorites = _favourite.AsQueryable();
+
             // Query favorites based on customer ID
             favorites = favorites.Where(f => f.CustomerId == customerId);
 
@@ -36,25 +37,27 @@ namespace CleanArchitecture.Infrastructure.Repositories
             {
                 throw new EntityNotFoundException("Favourites", totalItems);
             }
+
             // Apply pagination
-            var favourites = favorites.Skip((pageNumber - 1) * pageSize)
-                                       .Take(pageSize);
-                                      
+            var pagedFavorites = await favorites.Skip((pageNumber - 1) * pageSize)
+                                               .Take(pageSize)
+                                               .Include(f => f.Restaurant) // Include Restaurant entity
+                                               .ToListAsync();
 
             // Map the retrieved favorites to view models
-            var favoriteViewModels = favourites.Select(f => new GetAllFavouriteViewModel
+            var favoriteViewModels = pagedFavorites.Select(f => new GetAllFavouriteViewModel
             {
-                RestaurantId = f.Id,
+                RestaurantId = f.RestaurantId,
                 RestaurantName = f.Restaurant.Name,
-
                 // Map other properties as needed
-            }).ToListAsync();
+            });
 
             // Create a paged response
-            var pagedResponse = new PagedResponse<IEnumerable<GetAllFavouriteViewModel>>((IEnumerable<GetAllFavouriteViewModel>)favoriteViewModels, pageNumber, pageSize);
+            var pagedResponse = new PagedResponse<IEnumerable<GetAllFavouriteViewModel>>(favoriteViewModels, pageNumber, pageSize);
 
             return pagedResponse;
         }
+
 
 
     }
