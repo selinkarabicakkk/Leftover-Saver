@@ -32,7 +32,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         }
 
         // DELETE /api/restaurant/{id} 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
@@ -40,7 +40,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         }
 
         // PUT /api/restaurant/{id}
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
         [Authorize]
         public async Task<IActionResult> Put(int id, UpdateRestaurantCommand command)
         {
@@ -52,7 +52,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         }
 
         // GET /api/restaurant/{id}
-        [HttpGet("{id}")]
+        [HttpGet("getby/{id}")]
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await Mediator.Send(new GetRestaurantByIdQuery { Id = id }));
