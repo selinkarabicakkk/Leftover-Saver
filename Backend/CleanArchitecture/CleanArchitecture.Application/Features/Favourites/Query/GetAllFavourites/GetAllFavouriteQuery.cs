@@ -19,7 +19,7 @@ namespace CleanArchitecture.Core.Features.Favourites.Query.GetAllFavourites
         public int pageSize { get; set; }
     }
 
-    public class GetAllFavouritesQueryHandler : IRequestHandler<GetAllFavouriteQuery, PagedResponse<IEnumerable<GetAllFavouriteViewModel>>> 
+    public class GetAllFavouritesQueryHandler : IRequestHandler<GetAllFavouriteQuery, PagedResponse<IEnumerable<GetAllFavouriteViewModel>>>
     {
 
         private readonly IFavouritesRepositoryAsync _favouritesRepository;
@@ -34,10 +34,8 @@ namespace CleanArchitecture.Core.Features.Favourites.Query.GetAllFavourites
         //distance?????
         public async Task<PagedResponse<IEnumerable<GetAllFavouriteViewModel>>> Handle(GetAllFavouriteQuery request, CancellationToken cancellationToken)
         {
-            var validFilter = _mapper.Map<GetAllFavouriteParameter>(request);
-            var result = await _favouritesRepository.GetPagedReponseAsync(validFilter.PageNumber, validFilter.PageSize);
-            var viewModels = _mapper.Map<IEnumerable<GetAllFavouriteViewModel>>(result);
-            return new PagedResponse<IEnumerable<GetAllFavouriteViewModel>>(viewModels, validFilter.PageNumber, validFilter.PageSize); ;
+
+            return await _favouritesRepository.GetAllFavorites(request.CustomerId, request.pageNumber, request.pageSize);
         }
     }
 }
