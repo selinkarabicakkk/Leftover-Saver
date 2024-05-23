@@ -31,6 +31,9 @@ namespace CleanArchitecture.Infrastructure.Repositories
             // Query favorites based on customer ID
             favorites = favorites.Where(f => f.CustomerId == customerId);
 
+            // Include the Restaurant entity
+            favorites = favorites.Include(f => f.Restaurant);
+
             // Calculate total count before pagination
             var totalItems = await favorites.CountAsync();
             if (totalItems == 0)
@@ -41,15 +44,14 @@ namespace CleanArchitecture.Infrastructure.Repositories
             // Apply pagination
             var pagedFavorites = await favorites.Skip((pageNumber - 1) * pageSize)
                                                .Take(pageSize)
-                                               .Include(f => f.Restaurant) // Include Restaurant entity
                                                .ToListAsync();
 
             // Map the retrieved favorites to view models
             var favoriteViewModels = pagedFavorites.Select(f => new GetAllFavouriteViewModel
             {
                 RestaurantId = f.RestaurantId,
-                RestaurantName = f.Restaurant.Name,
-                // Map other properties as needed
+                RestaurantName = f.Restaurant.Name, // Assuming Restaurant.Name is the property containing the restaurant name
+                                                    // Map other properties as needed
             });
 
             // Create a paged response
@@ -57,6 +59,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
             return pagedResponse;
         }
+
 
 
 
