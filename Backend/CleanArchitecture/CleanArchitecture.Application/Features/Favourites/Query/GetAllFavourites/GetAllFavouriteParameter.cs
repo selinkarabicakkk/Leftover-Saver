@@ -7,5 +7,6 @@ namespace CleanArchitecture.Core.Features.Favourites.Query.GetAllFavourites
 {
     public class GetAllFavouriteParameter : RequestParameter
     {
+        public int CustomerId { get; set; }
     }
 }

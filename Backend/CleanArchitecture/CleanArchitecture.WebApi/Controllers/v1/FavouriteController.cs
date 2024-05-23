@@ -40,13 +40,16 @@ namespace CleanArchitecture.WebApi.Controllers.v1
             return await Mediator.Send(new GetAllRestaurantsQuery() { pageSize = filter.PageSize, pageNumber = filter.PageNumber });
         }
 
-        [HttpGet("favorites/user/{userId}")]
+        [HttpGet("favorites/customer/{customerId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedResponse<IEnumerable<GetAllFavouriteViewModel>>))]
         public async Task<ActionResult<PagedResponse<IEnumerable<GetAllFavouriteViewModel>>>> GetAllFavorites(int customerId, [FromQuery] GetAllFavouriteParameter filter)
         {
             var favorites = await Mediator.Send(new GetAllFavouriteQuery { CustomerId = customerId, pageSize = filter.PageSize, pageNumber = filter.PageNumber });
             return Ok(favorites);
         }
+
+
+
 
 
 
