@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Reflection.Emit;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace CleanArchitecture.Infrastructure.Contexts
 {
@@ -102,7 +104,7 @@ namespace CleanArchitecture.Infrastructure.Contexts
                 .HasOne(r => r.Items) // Navigation property in Reservation entity
                 .WithMany() 
                 .HasForeignKey(r => r.itemId) 
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.NoAction);
 
             //All Decimals will have 18,6 Range
             foreach (var property in builder.Model.GetEntityTypes()
@@ -113,5 +115,21 @@ namespace CleanArchitecture.Infrastructure.Contexts
             }
             base.OnModelCreating(builder);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Configuration for design-time services
+                var configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(connectionString);
+            }
+        }
+
     }
 }

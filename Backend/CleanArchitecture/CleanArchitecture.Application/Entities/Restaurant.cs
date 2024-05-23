@@ -20,6 +20,7 @@ namespace CleanArchitecture.Core.Entities
         public string StoreType { get; set; }
 
         public List<Item> Items { get; set; }
+        public virtual Reservation Reservation { get; set; }
        
 
         // public LinkedList<Item> Items { get; set; }

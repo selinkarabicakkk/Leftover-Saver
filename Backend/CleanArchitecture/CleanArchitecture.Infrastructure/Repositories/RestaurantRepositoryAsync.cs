@@ -45,6 +45,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 Email = p.Email,
                 Password = p.Password,
                 PhoneNumber = p.PhoneNumber,
+             
                 StoreType = p.StoreType,
                 StreetInformation = p.StreetInformation,
                 postalCode = p.postalCode,

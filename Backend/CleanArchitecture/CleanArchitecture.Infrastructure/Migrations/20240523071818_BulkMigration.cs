@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CleanArchitecture.Infrastructure.Migrations
 {
-    public partial class Entitiesedited : Migration
+    public partial class BulkMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,15 +18,16 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             migrationBuilder.DropColumn(
                 name: "UserName",
-                table: "Reservations");
-
-            migrationBuilder.DropColumn(
-                name: "UserName",
                 table: "Favourites");
 
             migrationBuilder.DropColumn(
                 name: "UserName",
                 table: "Baskets");
+
+            migrationBuilder.RenameColumn(
+                name: "AddressID",
+                table: "Restaurants",
+                newName: "postalCode");
 
             migrationBuilder.RenameColumn(
                 name: "RestaurantID",
@@ -37,6 +38,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "price",
                 table: "Reservations",
                 newName: "totalPrice");
+
+            migrationBuilder.RenameColumn(
+                name: "UserName",
+                table: "Reservations",
+                newName: "ReservationCode");
 
             migrationBuilder.RenameColumn(
                 name: "RestaurantID",
@@ -63,6 +69,24 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Addresses",
                 newName: "Neighbourhood");
 
+            migrationBuilder.AddColumn<string>(
+                name: "City",
+                table: "Restaurants",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Country",
+                table: "Restaurants",
+                type: "nvarchar(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "StreetInformation",
+                table: "Restaurants",
+                type: "nvarchar(max)",
+                nullable: true);
+
             migrationBuilder.AlterColumn<int>(
                 name: "RestaurantId",
                 table: "Reservations",
@@ -72,6 +96,12 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "RestaurantId1",
+                table: "Reservations",
+                type: "int",
+                nullable: true);
 
             migrationBuilder.AddColumn<bool>(
                 name: "isCancelled",
@@ -123,16 +153,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "ReservationId",
+                name: "pieceNumber",
                 table: "Items",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "pieceNumber",
-                table: "Items",
+                name: "CustomerId",
+                table: "Favourites",
                 type: "int",
-                nullable: true);
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
                 name: "RestaurantId",
@@ -155,6 +186,18 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
+                name: "BasketId1",
+                table: "Customers",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "FavoritesId",
+                table: "Customers",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.AddColumn<int>(
                 name: "ReservationId",
                 table: "Customers",
                 type: "int",
@@ -170,6 +213,13 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
+
+            migrationBuilder.AddColumn<int>(
+                name: "customerId",
+                table: "Baskets",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
                 name: "AdressDirection",
@@ -192,9 +242,21 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reservations_itemId",
+                table: "Reservations",
+                column: "itemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservations_RestaurantId",
                 table: "Reservations",
                 column: "RestaurantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_RestaurantId1",
+                table: "Reservations",
+                column: "RestaurantId1",
+                unique: true,
+                filter: "[RestaurantId1] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_BasketId",
@@ -205,11 +267,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "IX_Items_ItemId",
                 table: "Items",
                 column: "ItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Items_ReservationId",
-                table: "Items",
-                column: "ReservationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Items_RestaurantId",
@@ -227,14 +284,14 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_BasketId",
+                name: "IX_Customers_BasketId1",
                 table: "Customers",
-                column: "BasketId");
+                column: "BasketId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_FavouritesId",
+                name: "IX_Customers_FavoritesId",
                 table: "Customers",
-                column: "FavouritesId");
+                column: "FavoritesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_ReservationId",
@@ -249,20 +306,18 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Customers_Baskets_BasketId",
+                name: "FK_Customers_Baskets_BasketId1",
                 table: "Customers",
-                column: "BasketId",
+                column: "BasketId1",
                 principalTable: "Baskets",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Customers_Favourites_FavouritesId",
+                name: "FK_Customers_Favourites_FavoritesId",
                 table: "Customers",
-                column: "FavouritesId",
+                column: "FavoritesId",
                 principalTable: "Favourites",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Customers_Reservations_ReservationId",
@@ -296,13 +351,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Items_Reservations_ReservationId",
-                table: "Items",
-                column: "ReservationId",
-                principalTable: "Reservations",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
                 name: "FK_Items_Restaurants_RestaurantId",
                 table: "Items",
                 column: "RestaurantId",
@@ -310,12 +358,25 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Reservations_Items_itemId",
+                table: "Reservations",
+                column: "itemId",
+                principalTable: "Items",
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Reservations_Restaurants_RestaurantId",
                 table: "Reservations",
                 column: "RestaurantId",
                 principalTable: "Restaurants",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Reservations_Restaurants_RestaurantId1",
+                table: "Reservations",
+                column: "RestaurantId1",
+                principalTable: "Restaurants",
+                principalColumn: "Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -325,11 +386,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Customers");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Customers_Baskets_BasketId",
+                name: "FK_Customers_Baskets_BasketId1",
                 table: "Customers");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Customers_Favourites_FavouritesId",
+                name: "FK_Customers_Favourites_FavoritesId",
                 table: "Customers");
 
             migrationBuilder.DropForeignKey(
@@ -349,19 +410,31 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Items");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Items_Reservations_ReservationId",
+                name: "FK_Items_Restaurants_RestaurantId",
                 table: "Items");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Items_Restaurants_RestaurantId",
-                table: "Items");
+                name: "FK_Reservations_Items_itemId",
+                table: "Reservations");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Reservations_Restaurants_RestaurantId",
                 table: "Reservations");
 
+            migrationBuilder.DropForeignKey(
+                name: "FK_Reservations_Restaurants_RestaurantId1",
+                table: "Reservations");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Reservations_itemId",
+                table: "Reservations");
+
             migrationBuilder.DropIndex(
                 name: "IX_Reservations_RestaurantId",
+                table: "Reservations");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Reservations_RestaurantId1",
                 table: "Reservations");
 
             migrationBuilder.DropIndex(
@@ -370,10 +443,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
             migrationBuilder.DropIndex(
                 name: "IX_Items_ItemId",
-                table: "Items");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Items_ReservationId",
                 table: "Items");
 
             migrationBuilder.DropIndex(
@@ -389,16 +458,32 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Customers");
 
             migrationBuilder.DropIndex(
-                name: "IX_Customers_BasketId",
+                name: "IX_Customers_BasketId1",
                 table: "Customers");
 
             migrationBuilder.DropIndex(
-                name: "IX_Customers_FavouritesId",
+                name: "IX_Customers_FavoritesId",
                 table: "Customers");
 
             migrationBuilder.DropIndex(
                 name: "IX_Customers_ReservationId",
                 table: "Customers");
+
+            migrationBuilder.DropColumn(
+                name: "City",
+                table: "Restaurants");
+
+            migrationBuilder.DropColumn(
+                name: "Country",
+                table: "Restaurants");
+
+            migrationBuilder.DropColumn(
+                name: "StreetInformation",
+                table: "Restaurants");
+
+            migrationBuilder.DropColumn(
+                name: "RestaurantId1",
+                table: "Reservations");
 
             migrationBuilder.DropColumn(
                 name: "isCancelled",
@@ -425,12 +510,12 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Items");
 
             migrationBuilder.DropColumn(
-                name: "ReservationId",
+                name: "pieceNumber",
                 table: "Items");
 
             migrationBuilder.DropColumn(
-                name: "pieceNumber",
-                table: "Items");
+                name: "CustomerId",
+                table: "Favourites");
 
             migrationBuilder.DropColumn(
                 name: "RestaurantId",
@@ -445,8 +530,20 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Customers");
 
             migrationBuilder.DropColumn(
+                name: "BasketId1",
+                table: "Customers");
+
+            migrationBuilder.DropColumn(
+                name: "FavoritesId",
+                table: "Customers");
+
+            migrationBuilder.DropColumn(
                 name: "ReservationId",
                 table: "Customers");
+
+            migrationBuilder.DropColumn(
+                name: "customerId",
+                table: "Baskets");
 
             migrationBuilder.DropColumn(
                 name: "AdressDirection",
@@ -461,6 +558,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 table: "Addresses");
 
             migrationBuilder.RenameColumn(
+                name: "postalCode",
+                table: "Restaurants",
+                newName: "AddressID");
+
+            migrationBuilder.RenameColumn(
                 name: "RestaurantId",
                 table: "Reservations",
                 newName: "RestaurantID");
@@ -469,6 +571,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 name: "totalPrice",
                 table: "Reservations",
                 newName: "price");
+
+            migrationBuilder.RenameColumn(
+                name: "ReservationCode",
+                table: "Reservations",
+                newName: "UserName");
 
             migrationBuilder.RenameColumn(
                 name: "RestaurantId",
@@ -509,12 +616,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
-
-            migrationBuilder.AddColumn<string>(
-                name: "UserName",
-                table: "Reservations",
-                type: "nvarchar(max)",
-                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "RestaurantID",

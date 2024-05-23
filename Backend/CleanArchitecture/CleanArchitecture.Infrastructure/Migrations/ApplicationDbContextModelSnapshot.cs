@@ -133,6 +133,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("customerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("itemID")
                         .HasColumnType("int");
 
@@ -161,6 +164,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<int>("BasketId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("BasketId1")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
@@ -169,6 +175,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FavoritesId")
+                        .HasColumnType("int");
 
                     b.Property<int>("FavouritesId")
                         .HasColumnType("int");
@@ -195,9 +204,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("BasketId");
+                    b.HasIndex("BasketId1");
 
-                    b.HasIndex("FavouritesId");
+                    b.HasIndex("FavoritesId");
 
                     b.HasIndex("ReservationId");
 
@@ -217,6 +226,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -308,6 +320,9 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RestaurantId1")
+                        .HasColumnType("int");
+
                     b.Property<bool>("isCancelled")
                         .HasColumnType("bit");
 
@@ -323,6 +338,10 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("RestaurantId");
+
+                    b.HasIndex("RestaurantId1")
+                        .IsUnique()
+                        .HasFilter("[RestaurantId1] IS NOT NULL");
 
                     b.HasIndex("itemId");
 
@@ -620,15 +639,11 @@ namespace CleanArchitecture.Infrastructure.Migrations
 
                     b.HasOne("CleanArchitecture.Core.Entities.Basket", "Basket")
                         .WithMany()
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BasketId1");
 
                     b.HasOne("CleanArchitecture.Core.Entities.Favourites", "Favorites")
                         .WithMany()
-                        .HasForeignKey("FavouritesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FavoritesId");
 
                     b.HasOne("CleanArchitecture.Core.Entities.Reservation", "Reservation")
                         .WithMany()
@@ -670,13 +685,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasOne("CleanArchitecture.Core.Entities.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Core.Entities.Restaurant", null)
+                        .WithOne("Reservation")
+                        .HasForeignKey("CleanArchitecture.Core.Entities.Reservation", "RestaurantId1");
 
                     b.HasOne("CleanArchitecture.Core.Entities.Item", "Items")
                         .WithMany()
                         .HasForeignKey("itemId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Items");
@@ -760,6 +779,8 @@ namespace CleanArchitecture.Infrastructure.Migrations
             modelBuilder.Entity("CleanArchitecture.Core.Entities.Restaurant", b =>
                 {
                     b.Navigation("Items");
+
+                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Infrastructure.Models.ApplicationUser", b =>

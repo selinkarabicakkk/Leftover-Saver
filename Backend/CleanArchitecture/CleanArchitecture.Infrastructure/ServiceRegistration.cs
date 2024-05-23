@@ -101,13 +101,16 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IRestaurantRepositoryAsync, RestaurantRepositoryAsync>();
 
-            services.AddScoped<IItemRepositoryAsync, ItemRepositoryAsync>();
+            services.AddTransient<IItemRepositoryAsync, ItemRepositoryAsync>();
 
             services.AddTransient<IAddressRepositoryAsync, AddressRepositoryAsync>();
 
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IBasketRepositoryAsync, BasketRepositoryAsync>();
-
+            services.AddTransient<IFavouritesRepositoryAsync, FavouritesRepositoryAsync>();
+            services.AddTransient<IBasketItemRepositoryAsync, BasketItemRepositoryAsync>();
+            services.AddTransient<IReservationRepositoryAsync, ReservationRepositoryAsync>();
+            services.AddTransient<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
