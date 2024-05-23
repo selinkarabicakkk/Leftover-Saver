@@ -26,7 +26,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public async Task<PagedResponse<IEnumerable<GetAllFavouriteViewModel>>> GetAllFavorites(int customerId, int pageNumber, int pageSize)
         {
-            IQueryable<Favourites> favorites = _favourite.AsQueryable();
+            IQueryable<Favourites> favorites = _favourite.Include(f => f.Restaurant).AsQueryable();
 
             // Query favorites based on customer ID
             favorites = favorites.Where(f => f.CustomerId == customerId);
