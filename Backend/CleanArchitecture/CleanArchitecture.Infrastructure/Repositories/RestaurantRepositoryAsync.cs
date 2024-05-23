@@ -45,20 +45,12 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 Email = p.Email,
                 Password = p.Password,
                 PhoneNumber = p.PhoneNumber,
-<<<<<<< Updated upstream
-             
-=======
+
                 StreetInformation= p.StreetInformation,
                 City = p.City,
                 postalCode=p.postalCode,
                 Country=p.Country,
->>>>>>> Stashed changes
                 StoreType = p.StoreType,
-                StreetInformation = p.StreetInformation,
-                postalCode = p.postalCode,
-                City = p.City,
-                Country = p.Country,
-
 
             }).ToListAsync();
             return new PagedResponse<IEnumerable<GetAllRestaurantsViewModel>>(result, parameter.PageNumber, parameter.PageSize);
