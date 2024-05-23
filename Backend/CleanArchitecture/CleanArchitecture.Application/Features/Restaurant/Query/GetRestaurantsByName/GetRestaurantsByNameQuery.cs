@@ -20,9 +20,9 @@ namespace CleanArchitecture.Core.Features.Restaurant.Query.GetRestaurantsByName
     {
         private readonly IRestaurantRepositoryAsync _restaurantRepositoryAsync;
 
-        public GetPlaceByNameQueryHandler(IRestaurantRepositoryAsync placeRepositoryAsync)
+        public GetPlaceByNameQueryHandler(IRestaurantRepositoryAsync restaurantRepositoryAsync)
         {
-            _restaurantRepositoryAsync = _restaurantRepositoryAsync;
+            _restaurantRepositoryAsync = restaurantRepositoryAsync;
         }
 
         public async Task<PagedResponse<IEnumerable<GetAllRestaurantsViewModel>>> Handle(GetRestaurantsByNameQuery request, CancellationToken cancellationToken)
