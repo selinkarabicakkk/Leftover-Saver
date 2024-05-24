@@ -9,7 +9,7 @@ namespace CleanArchitecture.Core.Entities
 {
     public class Customer : AuditableBaseEntity
     {
-        public string Id {  get; set; }
+        public string CId {  get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
@@ -20,14 +20,20 @@ namespace CleanArchitecture.Core.Entities
 
 
         public int AdressId { get; set; }
-        public int CartId { get; set; }
-        public int FavouritesId { get; set; }
-        public int ReservationId { get; set; }
-
         public Address Address { get; set; }
-        public Favourites Favorites { get; set; }
+
+        public int CartId { get; set; }
         public Cart Cart { get; set; }
+
+        public int FavouritesId { get; set; }
+        public Favourites Favorites { get; set; }
+
+        public int ReservationId { get; set; }
         public Reservation Reservation { get; set; }
+
+
+
+
 
 
         //Database Modified

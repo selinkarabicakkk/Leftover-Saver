@@ -161,11 +161,17 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<int>("AdressId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CartId1")
                         .HasColumnType("int");
+
+                    b.Property<string>("ConfirmPassword")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -182,10 +188,16 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<int>("FavouritesId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")

@@ -21,9 +21,6 @@ namespace CleanArchitecture.Infrastructure.Repositories
             customers = dbContext.Set<Customer>();
         }
 
-        Task<Customer> ICustomerRepositoryAsync.GetByEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

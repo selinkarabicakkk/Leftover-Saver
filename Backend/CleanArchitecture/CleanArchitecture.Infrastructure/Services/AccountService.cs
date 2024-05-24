@@ -121,7 +121,7 @@ namespace CleanArchitecture.Infrastructure.Services
         {
             var userDatabase = new Customer
             {
-                Id = user.Id,
+                CId = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserName= user.UserName,
