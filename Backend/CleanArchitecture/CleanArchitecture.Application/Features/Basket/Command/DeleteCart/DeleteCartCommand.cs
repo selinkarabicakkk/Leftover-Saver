@@ -11,7 +11,7 @@ using CleanArchitecture.Core.Exceptions;
 
 namespace CleanArchitecture.Core.Features.Basket.Command.DeleteBasket
 {
-    public class DeleteBasketCommand : IRequest<Response<int>>
+    public class DeleteCartCommand : IRequest<Response<int>>
     {
         public int CustomerId { get; set; }
 
@@ -22,18 +22,18 @@ namespace CleanArchitecture.Core.Features.Basket.Command.DeleteBasket
          }*/
     }
 
-        public class DeleteBasketCommandHandler : IRequestHandler<DeleteBasketCommand, Response<int>>
+        public class DeleteCartCommandHandler : IRequestHandler<DeleteCartCommand, Response<int>>
         {
-            private readonly IBasketRepositoryAsync _basketRepository;
+            private readonly ICartRepositoryAsync _cartRepository;
             private readonly ICustomerRepositoryAsync _customerRepository;
 
-            public DeleteBasketCommandHandler(IBasketRepositoryAsync basketRepository, ICustomerRepositoryAsync customerRepository)
+            public DeleteCartCommandHandler(ICartRepositoryAsync cartRepository, ICustomerRepositoryAsync customerRepository)
             {
-                _basketRepository = basketRepository;
+                _cartRepository = cartRepository;
                 _customerRepository = customerRepository;
             }
 
-            public async Task<Response<int>> Handle(DeleteBasketCommand request, CancellationToken cancellationToken)
+            public async Task<Response<int>> Handle(DeleteCartCommand request, CancellationToken cancellationToken)
             {
                 var customer = await _customerRepository.GetByIdAsync(request.CustomerId);
 
@@ -42,19 +42,19 @@ namespace CleanArchitecture.Core.Features.Basket.Command.DeleteBasket
                     throw new ApiException("Customer not found");
                 }
 
-                var basket = customer.Basket;
+                var cart = customer.Cart;
 
-                if (basket == null)
+                if (cart == null)
                 {
                     throw new ApiException("Basket not found");
                 }
 
-                await _basketRepository.DeleteAsync(basket);
+                await _cartRepository.DeleteAsync(cart);
 
-                customer.Basket = null;
+                customer.Cart = null;
                 await _customerRepository.UpdateAsync(customer);
 
-                return new Response<int>(basket.Id);
+                return new Response<int>(cart.Id);
             }
         }
     

@@ -14,16 +14,16 @@ namespace CleanArchitecture.Infrastructure.Repositories
     public class AddressRepositoryAsync : GenericRepositoryAsync<Address>, IAddressRepositoryAsync
     {
 
-        private readonly DbSet<Address> addresses;
+        private readonly DbSet<Address> address;
 
         public AddressRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
         {
-            addresses = dbContext.Set<Address>();
+            address = dbContext.Set<Address>();
         }
 
         public async Task<List<Address>> GetAllAddressesByUserNameAsync(string userName)
         {
-            return await addresses.Where(a => a.UserName == userName).ToListAsync();
+            return await address.Where(a => a.UserName == userName).ToListAsync();
         }
     }
 }

@@ -2,6 +2,7 @@
 using CleanArchitecture.Core.Interfaces.Repositories;
 using CleanArchitecture.Infrastructure.Contexts;
 using CleanArchitecture.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,16 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
-    public class BasketItemRepositoryAsync : GenericRepositoryAsync<BasketItem>, IBasketItemRepositoryAsync
+    public class CartItemRepositoryAsync : GenericRepositoryAsync<CartItem>, ICartItemRepositoryAsync
     {
-        public BasketItemRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
+
+        private readonly DbSet<CartItem> _cartItems;
+
+        public CartItemRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
         {
+            _cartItems = dbContext.Set<CartItem>();
         }
+
+        
     }
 }
