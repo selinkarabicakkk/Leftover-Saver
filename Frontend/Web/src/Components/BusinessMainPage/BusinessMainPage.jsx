@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import './BusinessMainPage.css'; 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
