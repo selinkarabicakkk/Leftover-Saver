@@ -3,8 +3,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Core.Interfaces.Repositories
 {
-    public interface IBasketRepositoryAsync : IGenericRepositoryAsync<Basket>
+    public interface ICartItemRepositoryAsync : IGenericRepositoryAsync<CartItem>
     {
-        Task<Basket> GetByIdWithItemsAsync(int id);
     }
 }

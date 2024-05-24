@@ -16,13 +16,13 @@ namespace CleanArchitecture.Core.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public int AdressId { get; set; }
-        public int BasketId { get; set; }
+        public int CartId { get; set; }
         public int FavouritesId { get; set; }
         public int ReservationId { get; set; }
 
         public Address Address { get; set; }
         public Favourites Favorites { get; set; }
-        public Basket Basket { get; set; }
+        public Cart Cart { get; set; }
         public Reservation Reservation { get; set; }
 
 

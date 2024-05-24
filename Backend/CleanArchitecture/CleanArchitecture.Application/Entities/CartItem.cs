@@ -7,14 +7,13 @@ using System.Text;
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class BasketItem: Item
+    public class CartItem: Item
     {
-        public int BasketId { get; set; }
+        public int CartId { get; set; }
         public int pieceNumber { get; set; }
-        public Basket Basket { get; set; }  
+        public Cart Cart { get; set; }  
         public Item Item { get; set; }
 
-       
         
     }
 }

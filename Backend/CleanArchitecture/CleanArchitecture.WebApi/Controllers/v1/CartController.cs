@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Core.Features.Basket.Command.DeleteBasket;
 using CleanArchitecture.Core.Features.Basket.Command.UpdateCost;
-using CleanArchitecture.Core.Features.Basket.Commands.CreateBasket;
+using CleanArchitecture.Core.Features.Cart.Command.CreateCart;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.Controllers.v1
 {
-    public class BasketController : BaseApiController
+    public class CartController : BaseApiController
     {
         [HttpPost]
-        public async Task<IActionResult> Post(CreateBasketCommand command)
+        public async Task<IActionResult> Post(CreateCartCommand command)
         {
             var response = await Mediator.Send(command);
             if (!response.Succeeded)
@@ -25,7 +25,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         [Authorize]
         public async Task<IActionResult> Delete(int customerId)
         {
-            var command = new DeleteBasketCommand { CustomerId = customerId };
+            var command = new DeleteCartCommand { CustomerId = customerId };
             var response = await Mediator.Send(command);
             if (!response.Succeeded)
             {
@@ -37,9 +37,9 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         
         [HttpPut("update-cost/{basketId}")]
         [Authorize]
-        public async Task<IActionResult> UpdateCost(int basketId)
+        public async Task<IActionResult> UpdateCost(int cartId)
         {
-            var command = new UpdateCostCommand { BasketId = basketId };
+            var command = new UpdateCostCommand { CartId = cartId };
             var response = await Mediator.Send(command);
             if (!response.Succeeded)
             {
@@ -47,6 +47,17 @@ namespace CleanArchitecture.WebApi.Controllers.v1
             }
             return Ok(response);
         }
+
+        /*public async Task<IActionResult> GetAllCartItems(int cartId)
+        {
+            var query = new GetAllCartItemsQuery { CartId = cartId };
+            var response = await Mediator.Send(query);
+            if (!response.Succeeded)
+            {
+                return BadRequest(response.Message);
+            }
+            return Ok(response);
+        }*/
 
     }
 }

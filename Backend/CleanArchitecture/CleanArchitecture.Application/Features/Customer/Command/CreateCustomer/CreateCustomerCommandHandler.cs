@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Core.Features.Customer.Commands.CreateCustomer
 {
-    public class CreateCustomerCommandHandler
+    public class CreateCustomerCommandHandler: IRequest<int>
     {
 
         private ICustomerRepositoryAsync customerRepository;

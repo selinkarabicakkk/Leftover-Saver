@@ -13,26 +13,26 @@ namespace CleanArchitecture.Core.Features.Basket.Command.UpdateCost
 {
     public class UpdateCostCommand : IRequest<Response<int>>
     {
-        public int BasketId { get; set; }
+        public int CartId { get; set; }
 
 
         public class UpdateCostCommandHandler : IRequestHandler<UpdateCostCommand, Response<int>>
         {
-            private readonly IBasketRepositoryAsync _basketRepository;
+            private readonly ICartRepositoryAsync _cartRepository;
 
-            public UpdateCostCommandHandler(IBasketRepositoryAsync basketRepository)
+            public UpdateCostCommandHandler(ICartRepositoryAsync basketRepository)
             {
-                _basketRepository = basketRepository;
+                _cartRepository = basketRepository;
             }
             public async Task<Response<int>> Handle(UpdateCostCommand command, CancellationToken cancellationToken)
             {
-                var basket = await _basketRepository.GetByIdWithItemsAsync(command.BasketId);
+                var basket = await _cartRepository.GetByIdWithItemsAsync(command.CartId);
 
-                if (basket == null) throw new EntityNotFoundException("Basket", command.BasketId);
+                if (basket == null) throw new EntityNotFoundException("Basket", command.CartId);
 
-                basket.price = basket.BasketItems.Sum(item => item.price * item.pieceNumber);
+                basket.price = basket.CartItems.Sum(item => item.price * item.pieceNumber);
 
-                await _basketRepository.UpdateAsync(basket);
+                await _cartRepository.UpdateAsync(basket);
 
                 return new Response<int>(basket.Id);
             }

@@ -26,8 +26,8 @@ namespace CleanArchitecture.Infrastructure.Contexts
         }
 
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Basket> Baskets { get; set; }
-        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Cart> Baskets { get; set; }
+        public DbSet<CartItem> BasketItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Favourites> Favourites { get; set; }
         public DbSet<Item> Items { get; set; }

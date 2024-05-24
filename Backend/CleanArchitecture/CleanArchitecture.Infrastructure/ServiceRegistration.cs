@@ -106,11 +106,18 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient<IAddressRepositoryAsync, AddressRepositoryAsync>();
 
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
+<<<<<<< Updated upstream
             services.AddTransient<IBasketRepositoryAsync, BasketRepositoryAsync>();
             services.AddTransient<IFavouritesRepositoryAsync, FavouritesRepositoryAsync>();
             services.AddTransient<IBasketItemRepositoryAsync, BasketItemRepositoryAsync>();
             services.AddTransient<IReservationRepositoryAsync, ReservationRepositoryAsync>();
             services.AddTransient<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
+=======
+            services.AddTransient<ICartRepositoryAsync, CartRepositoryAsync>();
+            services.AddScoped<ICartItemRepositoryAsync, CartItemRepositoryAsync>();
+
+
+>>>>>>> Stashed changes
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             //services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();

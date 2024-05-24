@@ -7,12 +7,12 @@ using System.Text;
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class Basket:AuditableBaseEntity
+    public class Cart:AuditableBaseEntity
     {
          public int itemID { get; set; } 
         public double price { get; set; }
         public int customerId { get; set; }
-        public List<BasketItem> BasketItems { get; set; }
+        public List<CartItem> CartItems { get; set; }
 
     }
 }
