@@ -38,7 +38,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
             return Ok(await Mediator.Send(new DeleteItemCommand { Id = id }));
         }
 
-        // PUT /api/restaurant/{id}
+        
         [HttpPut("{id}")]
         [Authorize]
         public async Task<IActionResult> Put(int id, UpdateItemCommand command)
@@ -50,7 +50,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
             return Ok(await Mediator.Send(command));
         }
 
-        // GET /api/restaurant/{id}
+     
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
