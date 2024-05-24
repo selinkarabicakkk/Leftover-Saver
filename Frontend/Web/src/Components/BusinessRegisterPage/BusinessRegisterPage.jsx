@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react';
+import $ from "jquery"
+
 import './BusinessRegisterPage.css'; 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -20,6 +22,29 @@ const BusinessRegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    $.ajax({
+      url: "https://localhost:9001/api/Account/register",
+      type: "POST",
+      contentType: "application/json;",
+      data: {
+        "firstName": "selindenemeapi",
+        "lastName": "asdasd",
+        "email": "selin@gmail.com",
+        "userName": "wow",
+        "password": "wowow",
+        "confirmPassword": "wowow"
+      },
+      success: function(response) {
+          console.log(response);
+          // Display the weather information on the page
+          
+      },
+      error: function(error) {
+          console.log("Error:", error);
+      }
+  });
+
+
   }
 
   useEffect(() => {
@@ -34,37 +59,37 @@ const BusinessRegisterPage = () => {
       <form className='form' onSubmit={handleSubmit}>
         <div className="informations">
           <div className="store-name">
-            <input type="text" placeholder='Store Name' value={storeName} onChange={(e) => setStoreName(e.target.value)} required/>
+            <input type="text" placeholder='Store Name' value={storeName} onChange={(e) => setStoreName(e.target.value)} />
           </div>
           <div className="store-type">
-            <input type="text" placeholder='Store Type' value={storeType} onChange={(e) => setStoreType(e.target.value)} required/>
+            <input type="text" placeholder='Store Type' value={storeType} onChange={(e) => setStoreType(e.target.value)} />
           </div>
           <div className="phone-number">
-            <input type="text" placeholder='Phone Number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required/>
+            <input type="text" placeholder='Phone Number' value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
           </div>
           <div className="email">
-            <input type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
+            <input type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="password">
-            <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
+            <input type="password" placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="confirm-password">
-            <input type="password" placeholder='Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
+            <input type="password" placeholder='Confirm Password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
         </div>
         <div className="address-info">
           <div className="address">
-            <input type="text" placeholder='Address' value={address} onChange={(e) => setAddress(e.target.value)} required/>
+            <input type="text" placeholder='Address' value={address} onChange={(e) => setAddress(e.target.value)} />
           </div>
           <div className="except-address">
             <div className="postal-code">
-              <input type="text" placeholder='Postal Code' value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required/>
+              <input type="text" placeholder='Postal Code' value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
             </div>
             <div className="city">
-              <input type="text" placeholder='City' value={city} onChange={(e) => setCity(e.target.value)} required/>
+              <input type="text" placeholder='City' value={city} onChange={(e) => setCity(e.target.value)} />
             </div>
             <div className="country">
-              <input type="text" placeholder='Country' value={country} onChange={(e) => setCountry(e.target.value)} required/>
+              <input type="text" placeholder='Country' value={country} onChange={(e) => setCountry(e.target.value)} />
             </div>
           </div>
         </div>
