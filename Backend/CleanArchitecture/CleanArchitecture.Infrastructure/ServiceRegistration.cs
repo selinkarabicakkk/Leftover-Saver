@@ -112,8 +112,7 @@ namespace CleanArchitecture.Infrastructure
             services.AddTransient<IReservationRepositoryAsync, ReservationRepositoryAsync>();
             services.AddTransient<ICustomerRepositoryAsync, CustomerRepositoryAsync>();
 
-            services.AddTransient<ICartRepositoryAsync, CartRepositoryAsync>();
-            services.AddScoped<ICartItemRepositoryAsync, CartItemRepositoryAsync>();
+            
 
 
 

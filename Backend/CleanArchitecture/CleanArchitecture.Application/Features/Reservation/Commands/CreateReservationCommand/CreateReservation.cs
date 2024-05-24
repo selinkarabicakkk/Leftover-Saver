@@ -56,12 +56,11 @@ namespace CleanArchitecture.Core.Features.Reservation.Commands.CreateReservation
             {
 
                 RestaurantId = request.RestaurantId,
-                ReservationCode = request.ReservationCode,
                 isDelivered = request.isDelivered,
                 isCancelled = request.isCancelled,
                 totalPrice = request.totalPrice,
-                Created = DateTime.UtcNow
-
+                Created = DateTime.UtcNow,
+                 ReservationCode=Guid.NewGuid().ToString()
             };
 
             await _reservationRepositoryAsync.AddAsync(newReservation);
