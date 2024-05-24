@@ -5,6 +5,9 @@ import ConsumerPage from './Components/ConsumerPage/ConsumerPage';
 import SignIn from './Components/LoginPage/LoginPage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import BusinessDatabasePage from './Components/BusinessDatabasePage/BusinessDatabasePage';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
         <Route path='/business' element={<BusinessMainPage />} />
         <Route path='/consumer' element={<ConsumerPage />} />
         <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/database' element={<BusinessDatabasePage/>} />
+    
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import $ from "jquery"
-
+import $ from "jquery";
 import './BusinessRegisterPage.css'; 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -27,7 +26,7 @@ const BusinessRegisterPage = () => {
       type: "POST",
       contentType: "application/json;",
       data: {
-        "firstName": "selindenemeapi",
+        "name": "selindenemeapi",
         "lastName": "asdasd",
         "email": "selin@gmail.com",
         "userName": "wow",
@@ -35,8 +34,6 @@ const BusinessRegisterPage = () => {
         "confirmPassword": "wowow"
       },
       success: function(response) {
-          console.log(response);
-          // Display the weather information on the page
           
       },
       error: function(error) {
