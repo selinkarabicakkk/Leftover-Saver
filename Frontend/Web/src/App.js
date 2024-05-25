@@ -6,6 +6,7 @@ import SignIn from './Components/LoginPage/LoginPage';
 import LandingPage from './Components/LandingPage/LandingPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BusinessDatabasePage from './Components/BusinessDatabasePage/BusinessDatabasePage';
+import BusinessEditInventoryPage from './Components/BusinessEditInventoryPage/BusinessEditInventoryPage';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -19,7 +20,7 @@ function App() {
         <Route path='/consumer' element={<ConsumerPage />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/database' element={<BusinessDatabasePage/>} />
-    
+        <Route path='/edit-inventory' element={<BusinessEditInventoryPage/>} />
       </Routes>
     </BrowserRouter>
   );

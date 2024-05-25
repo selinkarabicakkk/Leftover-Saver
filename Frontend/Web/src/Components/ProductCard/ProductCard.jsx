@@ -1,6 +1,6 @@
 // src/components/ProductCard.js
-import React from 'react';
-import './ProductCard.css';
+import React from "react";
+import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   return (
