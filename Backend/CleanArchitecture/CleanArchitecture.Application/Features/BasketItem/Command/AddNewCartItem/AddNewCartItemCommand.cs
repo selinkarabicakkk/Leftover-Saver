@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using CleanArchitecture.Core.Entities;
 
 namespace CleanArchitecture.Core.Features.BasketItem.Command.AddNewCartItem
 {
@@ -30,8 +31,8 @@ namespace CleanArchitecture.Core.Features.BasketItem.Command.AddNewCartItem
 
         public async Task<Response<int>> Handle(AddNewCartItemCommand request, CancellationToken cancellationToken)
         {
-            var basket = await _cartRepository.GetByIdAsync(request.CartId);
-            if (basket == null)
+            var cart = await _cartRepository.GetByIdAsync(request.CartId);
+            if (cart == null)
             {
                 throw new ApiException("Basket not found");
             }
@@ -42,17 +43,17 @@ namespace CleanArchitecture.Core.Features.BasketItem.Command.AddNewCartItem
                 throw new ApiException("Item not found");
             }
 
-            var basketItem = new Entities.CartItem
+            var cartItem = new Entities.CartItem
             {
                 Id=request.ItemId,
                 pieceNumber = request.pieceNumber,
                 price = item.price 
             };
 
-            basket.CartItems.Add(basketItem);
-            await _cartRepository.UpdateAsync(basket);
+            cart.CartItems.Add(cartItem);
+            await _cartRepository.UpdateAsync(cart);
 
-            return new Response<int>(basketItem.Id);
+            return new Response<int>(cartItem.Id);
         }
     }
 

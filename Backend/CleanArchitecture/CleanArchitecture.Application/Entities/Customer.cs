@@ -35,7 +35,6 @@ namespace CleanArchitecture.Core.Entities
 
 
 
-
         //Database Modified
 
     }

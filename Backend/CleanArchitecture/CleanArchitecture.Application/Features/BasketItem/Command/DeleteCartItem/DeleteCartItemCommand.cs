@@ -36,7 +36,7 @@ namespace CleanArchitecture.Core.Features.BasketItem.Commands.DeleteCartItem
             }
 
             var cartItem = cart.CartItems.Find(ci => ci.Id == request.ItemId);
-            if (cartItem == null)
+            if ( cartItem == null)
             {
                 throw new ApiException("Item not found in cart");
             }

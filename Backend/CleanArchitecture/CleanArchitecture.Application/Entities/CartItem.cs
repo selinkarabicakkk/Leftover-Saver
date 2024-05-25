@@ -16,4 +16,4 @@ namespace CleanArchitecture.Core.Entities
 
         
     }
-}
+} 
