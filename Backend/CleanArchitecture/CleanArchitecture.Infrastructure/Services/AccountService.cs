@@ -101,14 +101,16 @@ namespace CleanArchitecture.Infrastructure.Services
                     await CreateUser(user);
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
                     var verificationUri = await SendVerificationEmail(user, origin);
-                    _emailService.SendEmail(user.Email, verificationUri);
+                    await _emailService.SendEmail(user.Email, verificationUri);
                     //TODO: Attach Email Service here and configure it via appsettings
                     //await _emailService.SendAsync(new Core.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
                     return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
                 }
                 else
                 {
-                    throw new ApiException($"{result.Errors}");
+                    /*throw new ApiException($"{result.Errors}");*/
+                    var errorMessages = string.Join("; ", result.Errors.Select(e => e.Description));
+                    throw new ApiException($"User creation failed: {errorMessages}");
                 }
             }
             else
