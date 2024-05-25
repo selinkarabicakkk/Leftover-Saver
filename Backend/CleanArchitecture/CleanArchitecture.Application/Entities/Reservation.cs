@@ -14,11 +14,10 @@ namespace CleanArchitecture.Core.Entities
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }
 
-       
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }  
 
-        [ForeignKey("Item")]
-        public int itemId { get; set; }
-        public Item Items { get; set; }
+        public ICollection<ReservationItem> ReservationItems { get; set; }
 
         public bool isDelivered { get; set; }
         public bool isCancelled { get; set; }

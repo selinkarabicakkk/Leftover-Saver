@@ -18,10 +18,11 @@ namespace CleanArchitecture.Core.Entities
         public string postalCode { get; set; }
         public string Country { get; set; }
         public string StoreType { get; set; }
+        public string Picture { get; set; }
 
-        public List<Item> Items { get; set; }
-        public virtual Reservation Reservation { get; set; }
-       
+        public ICollection<Item> Items { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
+
 
         // public LinkedList<Item> Items { get; set; }
         // Other properties

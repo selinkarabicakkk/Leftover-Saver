@@ -21,6 +21,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
         public string postalCode { get; set; }
         public string Country { get; set; }
         public string StoreType { get; set; }
+        public string Picture { get; set; }
         //public LinkedList<Item> Items { get; set; }
 
 
@@ -53,6 +54,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant
                 postalCode=request.postalCode,
                 Country=request.Country,
                 StoreType=request.StoreType,
+                Picture=request.Picture,
                 
     };
 

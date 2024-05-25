@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.Features.Basket.Command.DeleteBasket;
+﻿/*using CleanArchitecture.Core.Features.Basket.Command.DeleteBasket;
 using CleanArchitecture.Core.Features.Basket.Command.UpdateCost;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -45,7 +45,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
                 return BadRequest(response.Message);
             }
             return Ok(response);
-        }*/
+        }
 
     }
-}
+}*/

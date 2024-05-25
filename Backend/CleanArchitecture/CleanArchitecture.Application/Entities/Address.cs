@@ -20,6 +20,8 @@ namespace CleanArchitecture.Core.Entities
         public string AddressTitle { get; set; }
         public string AdressDirection { get; set; }
 
+        public Customer Customer { get; set; }
+
         //Database Modified
     }
 }

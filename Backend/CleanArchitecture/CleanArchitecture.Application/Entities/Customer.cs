@@ -19,17 +19,8 @@ namespace CleanArchitecture.Core.Entities
         public string ConfirmPassword { get; set; }
 
 
-        public int AdressId { get; set; }
-        public Address Address { get; set; }
-
-        public int CartId { get; set; }
-        public Cart Cart { get; set; }
-
-        public int FavouritesId { get; set; }
-        public Favourites Favorites { get; set; }
-
-        public int ReservationId { get; set; }
-        public Reservation Reservation { get; set; }
+        ICollection<Reservation> reservations { get; set; }
+        public Cart Cart { get; set; } 
 
 
 

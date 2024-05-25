@@ -98,12 +98,7 @@ namespace CleanArchitecture.Infrastructure.Contexts
         .HasForeignKey(r => r.RestaurantId) // Foreign key in Reservation entity
         .OnDelete(DeleteBehavior.NoAction); // Prevent cascading delete
 
-            // Adjust foreign key for itemId
-            builder.Entity<Reservation>()
-                .HasOne(r => r.Items) // Navigation property in Reservation entity
-                .WithMany() 
-                .HasForeignKey(r => r.itemId) 
-                .OnDelete(DeleteBehavior.NoAction);
+           
 
             //All Decimals will have 18,6 Range
             foreach (var property in builder.Model.GetEntityTypes()

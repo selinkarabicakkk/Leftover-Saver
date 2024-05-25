@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Core.Entities;
+﻿/*using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Interfaces.Repositories;
 using CleanArchitecture.Core.Wrappers;
 using MediatR;
@@ -19,7 +19,7 @@ namespace CleanArchitecture.Core.Features.Basket.Command.DeleteBasket
         /* public DeleteBasketCommand(int customerId)
          {
              CustomerId = customerId;
-         }*/
+         }
     }
 
         public class DeleteCartCommandHandler : IRequestHandler<DeleteCartCommand, Response<int>>
@@ -60,4 +60,4 @@ namespace CleanArchitecture.Core.Features.Basket.Command.DeleteBasket
     
 
 
-}
+}*/

@@ -25,7 +25,8 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant
         public string postalCode { get; set; }
         public string Country { get; set; }
         public string StoreType { get; set; }
-      
+        public string Picture { get; set; }
+
         public class UpdateRestaurantCommandHandler : IRequestHandler<UpdateRestaurantCommand, Response<int>>
         {
             private readonly IRestaurantRepositoryAsync _restaurantRepository;
@@ -48,6 +49,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant
                 restaurant.Country = command.Country;
                 restaurant.StreetInformation = command.StreetInformation;
                 restaurant.StoreType = command.StoreType;
+                restaurant.Picture = command.Picture;
 
                 await _restaurantRepository.UpdateAsync(restaurant);
 

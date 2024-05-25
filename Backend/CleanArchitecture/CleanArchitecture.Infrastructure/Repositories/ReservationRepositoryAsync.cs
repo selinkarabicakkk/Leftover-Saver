@@ -23,7 +23,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
         {
             return await _reservation
                                  .Include(r => r.Restaurant)
-                                 .Include(r => r.Items)
+                                 .Include(r => r.Customer)
                                  .ToListAsync();
         }
     }
