@@ -9,6 +9,7 @@ namespace CleanArchitecture.Core.Entities
 
     public class CartItem: Item
     {
+        public int CustomerID { get; set; }
         public int CartId { get; set; }
         public int pieceNumber { get; set; }
         public Cart Cart { get; set; }  
