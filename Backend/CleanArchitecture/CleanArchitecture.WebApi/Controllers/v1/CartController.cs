@@ -1,5 +1,9 @@
-﻿/*using CleanArchitecture.Core.Features.Basket.Command.DeleteBasket;
-using CleanArchitecture.Core.Features.Basket.Command.UpdateCost;
+﻿using CleanArchitecture.Core.Exceptions;
+using CleanArchitecture.Core.Features.Cart.Command.CreateCart;
+using CleanArchitecture.Core.Features.Cart.Command.DeleteCart;
+using CleanArchitecture.Core.Features.Cart.Query.GetCardByCustomerId;
+using CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant;
+using CleanArchitecture.Core.Features.Restaurant.Command.DeleteRestaurant;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,43 +13,33 @@ namespace CleanArchitecture.WebApi.Controllers.v1
 {
     public class CartController : BaseApiController
     {
-        [HttpDelete("{customerId}")]
-        [Authorize]
-        public async Task<IActionResult> Delete(int customerId)
+
+        //POST /api/cart
+        [HttpPost]
+        public async Task<IActionResult> Post(CreateCartCommand command)
         {
-            var command = new DeleteCartCommand { CustomerId = customerId };
-            var response = await Mediator.Send(command);
-            if (!response.Succeeded)
-            {
-                return BadRequest(response.Message);
-            }
-            return Ok(response);
+            return Ok(await Mediator.Send(command));
         }
 
-        
-        [HttpPut("update-cost/{basketId}")]
+        // DELETE /api/cart/{id} 
+        [HttpDelete("delete/{id}")]
         [Authorize]
-        public async Task<IActionResult> UpdateCost(int cartId)
+        public async Task<IActionResult> Delete(int id)
         {
-            var command = new UpdateCostCommand { CartId = cartId };
-            var response = await Mediator.Send(command);
-            if (!response.Succeeded)
-            {
-                return BadRequest(response.Message);
-            }
-            return Ok(response);
+            return Ok(await Mediator.Send(new DeleteCartCommand { Id = id }));
         }
 
-        /*public async Task<IActionResult> GetAllCartItems(int cartId)
+        [HttpGet("cart/{customerId}")]
+        public async Task<IActionResult> GetCartByCustomerId(int customerId)
         {
-            var query = new GetAllCartItemsQuery { CartId = cartId };
-            var response = await Mediator.Send(query);
-            if (!response.Succeeded)
+            var cart = await Mediator.Send(new GetCartByIdQuery { CustomerId = customerId });
+            if (cart == null)
             {
-                return BadRequest(response.Message);
+                throw new ApiException($"Cart with defined CustomerId not found.");
             }
-            return Ok(response);
+            return Ok(cart);
         }
+
 
     }
-}*/
+}

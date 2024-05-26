@@ -17,11 +17,14 @@ namespace CleanArchitecture.Infrastructure.Repositories
             _cart = dbContext.Set<Cart>();
         }
 
-        public async Task<Cart> GetByIdWithItemsAsync(int cartId)
+
+        public async Task<Cart> GetCartByCustomerIdAsync(int customerId)
         {
             return await _cart
-                .Include(b => b.CartItems)
-                .FirstOrDefaultAsync(b => b.Id == cartId);
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Item)
+                .FirstOrDefaultAsync(c => c.customerId == customerId);
         }
+
     }
 }

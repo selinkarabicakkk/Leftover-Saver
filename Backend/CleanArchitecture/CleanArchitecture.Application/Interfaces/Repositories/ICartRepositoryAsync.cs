@@ -5,6 +5,7 @@ namespace CleanArchitecture.Core.Interfaces.Repositories
 {
     public interface ICartRepositoryAsync : IGenericRepositoryAsync<Cart>
     {
-        Task<Cart> GetByIdWithItemsAsync(int id);
+        
+        Task<Cart> GetCartByCustomerIdAsync(int customerId);
     }
 }

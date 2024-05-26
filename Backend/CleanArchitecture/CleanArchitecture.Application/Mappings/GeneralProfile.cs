@@ -8,6 +8,7 @@ using CleanArchitecture.Core.Features.Address.Command.CreateAddress;//
 using CleanArchitecture.Core.Features.Restaurant.Query.GetAllRestaurants;
 using CleanArchitecture.Core.Features.Favourites.Command.AddFavourite;
 using CleanArchitecture.Core.Features.Favourites.Query.GetAllFavourites;
+using CleanArchitecture.Core.Features.Cart.Query.GetCardByCustomerId;
 //using CleanArchitecture.Core.Features.Categories.Queries.GetAllCategories;
 //using CleanArchitecture.Core.Features.Products.Commands.CreateProduct;
 //using CleanArchitecture.Core.Features.Products.Queries.GetAllProducts;
@@ -36,6 +37,11 @@ namespace CleanArchitecture.Core.Mappings
                 .ReverseMap();
             CreateMap<AddFavouriteCommand, Favourites>();
             CreateMap<GetAllFavouriteQuery, GetAllFavouriteParameter>();
+
+            CreateMap<Cart, GetCardByIdViewModel>();
+            CreateMap<CartItem, GetCardByIdViewModel>()
+                .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.itemName))
+                .ForMember(dest => dest.ItemPrice, opt => opt.MapFrom(src => src.Item.price));
         }
     }
 }
