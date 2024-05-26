@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BusinessDatabasePage from './Components/BusinessDatabasePage/BusinessDatabasePage';
 import BusinessEditInventoryPage from './Components/BusinessEditInventoryPage/BusinessEditInventoryPage';
 import ReservationsPage from './Components/ReservationsPage/ReservationsPage';
+import BusinessDeleteAccPage from './Components/BusinessDeleteAccPage/BusinessDeleteAccPage';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/database' element={<BusinessDatabasePage/>} />
         <Route path='/edit-inventory' element={<BusinessEditInventoryPage/>} />
         <Route path='/reservations' element={<ReservationsPage />} />
+        <Route path='/delete-account' element={<BusinessDeleteAccPage />} />
       </Routes>
     </BrowserRouter>
   );
