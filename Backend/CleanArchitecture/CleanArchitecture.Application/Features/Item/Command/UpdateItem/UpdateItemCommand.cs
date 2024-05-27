@@ -16,7 +16,7 @@ namespace CleanArchitecture.Core.Features.Item.Command.UpdateItem
     public class UpdateItemCommand : IRequest<Response<int>>
     {
       //  public string RestaurantID { get; }
-        public int Id { get; set; }
+      public int Id { get; set; }
         public string itemName { get; set; }
         public double price { get; set; }
         public string picture { get; set; }

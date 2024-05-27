@@ -7,13 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using CleanArchitecture.Core.Interfaces.Repositories;
-using CleanArchitecture.Core.Features.Favourites.Query.GetAllFavourites;
 
 namespace CleanArchitecture.Core.Features.Item.Query.GetAllItem
 {
     public class GetAllItemsQuery : IRequest<PagedResponse<IEnumerable<GetAllItemsViewModel>>>
     {
-        public int restaurantId { get; set; }
         public int pageNumber { get; set; }
         public int pageSize { get; set; }
 
@@ -31,13 +29,12 @@ namespace CleanArchitecture.Core.Features.Item.Query.GetAllItem
             _mapper = mapper;
         }
 
-
         public async Task<PagedResponse<IEnumerable<GetAllItemsViewModel>>> Handle(GetAllItemsQuery request, CancellationToken cancellationToken)
         {
             var validFilter = _mapper.Map<GetAllItemsParameter>(request);
-            var items = await _itemRepository.GetPagedResponseByRestaurantAsync(validFilter.restaurantId, validFilter.PageNumber, validFilter.PageSize);
-            var viewModels = _mapper.Map<IEnumerable<GetAllItemsViewModel>>(items);
-            return new PagedResponse<IEnumerable<GetAllItemsViewModel>>(viewModels, validFilter.PageNumber, validFilter.PageSize);
+            var result = await _itemRepository.GetPagedReponseAsync(validFilter.PageNumber, validFilter.PageSize);
+            var viewModels = _mapper.Map<IEnumerable<GetAllItemsViewModel>>(result);
+            return new PagedResponse<IEnumerable<GetAllItemsViewModel>>(viewModels, validFilter.PageNumber, validFilter.PageSize); ;
         }
     }
 }

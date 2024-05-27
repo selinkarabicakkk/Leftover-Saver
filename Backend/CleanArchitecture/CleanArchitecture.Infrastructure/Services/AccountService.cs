@@ -38,8 +38,7 @@ namespace CleanArchitecture.Infrastructure.Services
             IOptions<JWTSettings> jwtSettings,
             IDateTimeService dateTimeService,
             SignInManager<ApplicationUser> signInManager,
-            IEmailService emailService,
-            ICustomerRepositoryAsync customerRepositoryAsync)
+            IEmailService emailService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -47,7 +46,6 @@ namespace CleanArchitecture.Infrastructure.Services
             _dateTimeService = dateTimeService;
             _signInManager = signInManager;
             this._emailService = emailService;
-            _customerRepositoryAsync = customerRepositoryAsync;
         }
 
         public async Task<Response<AuthenticationResponse>> AuthenticateAsync(AuthenticationRequest request, string ipAddress)
@@ -62,10 +60,10 @@ namespace CleanArchitecture.Infrastructure.Services
             {
                 throw new ApiException($"Invalid Credentials for '{request.Email}'.");
             }
-           /* if (!user.EmailConfirmed)
+            if (!user.EmailConfirmed)
             {
                 throw new ApiException($"Account Not Confirmed for '{request.Email}'.");
-            }*/
+            }
             JwtSecurityToken jwtSecurityToken = await GenerateJWToken(user);
             AuthenticationResponse response = new AuthenticationResponse();
             response.Id = user.Id;
@@ -102,11 +100,11 @@ namespace CleanArchitecture.Infrastructure.Services
                 {
                     await CreateUser(user);
                     await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
-                    //var verificationUri = await SendVerificationEmail(user, origin);
-                    //await _emailService.SendEmail(user.Email, verificationUri);
+                    var verificationUri = await SendVerificationEmail(user, origin);
+                    await _emailService.SendEmail(user.Email, verificationUri);
                     //TODO: Attach Email Service here and configure it via appsettings
                     //await _emailService.SendAsync(new Core.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
-                    return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL");
+                    return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
                 }
                 else
                 {
