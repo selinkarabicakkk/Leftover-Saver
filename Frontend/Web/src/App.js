@@ -9,24 +9,28 @@ import BusinessDatabasePage from './Components/BusinessDatabasePage/BusinessData
 import BusinessEditInventoryPage from './Components/BusinessEditInventoryPage/BusinessEditInventoryPage';
 import ReservationsPage from './Components/ReservationsPage/ReservationsPage';
 import BusinessDeleteAccPage from './Components/BusinessDeleteAccPage/BusinessDeleteAccPage';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { AuthProvider } from './AuthContext';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
 
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='/sign-up' element={<BusinessRegisterPage />} />
-        <Route path='/business' element={<BusinessMainPage />} />
-        <Route path='/consumer' element={<ConsumerPage />} />
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/database' element={<BusinessDatabasePage/>} />
-        <Route path='/edit-inventory' element={<BusinessEditInventoryPage/>} />
-        <Route path='/reservations' element={<ReservationsPage />} />
-        <Route path='/delete-account' element={<BusinessDeleteAccPage />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/sign-up' element={<BusinessRegisterPage />} />
+          <Route path='/business' element={<BusinessMainPage />} />
+          <Route path='/consumer' element={<ConsumerPage />} />
+          <Route path='/sign-in' element={<PublicRoute element={SignIn} />} />
+          <Route path='/database' element={<PrivateRoute element={<BusinessDatabasePage />} />} />
+          <Route path='/edit-inventory' element={<PrivateRoute element={<BusinessEditInventoryPage />} />} />
+          <Route path='/reservations' element={<PrivateRoute element={<ReservationsPage />} />} />
+          <Route path='/delete-account' element={<PrivateRoute element={<BusinessDeleteAccPage />} />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

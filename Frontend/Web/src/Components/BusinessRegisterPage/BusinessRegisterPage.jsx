@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import $ from "jquery";
 import "./BusinessRegisterPage.css";
 import Header from "../Header/Header";
@@ -18,19 +19,22 @@ const BusinessRegisterPage = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setPasswordError("Passwords do not match");
+      setErrors({ ...errors, password: "Passwords do not match" });
       return;
     }
 
-    setPasswordError("");
+    setErrors({});
 
     $.ajax({
-      url: "https://foodleftoversaver.azurewebsites.net/api/v1/Restaurant",
+      url: "https://foodleftoversaver.azurewebsites.net/api/v1/Restaurant/create/restaurant",
       type: "POST",
       contentType: "application/json;",
       dataType: "json",
@@ -46,10 +50,17 @@ const BusinessRegisterPage = () => {
         storeType: storeType,
       }),
       success: function (response) {
-        console.log("Success:", response);
+        navigate("/sign-in"); // Redirect to the /database page
       },
       error: function (error) {
-        console.log("Error:", error);
+        const errorResponse = error.responseJSON;
+        if (errorResponse && errorResponse.errors) {
+          const newErrors = {};
+          Object.keys(errorResponse.errors).forEach((key) => {
+            newErrors[key.toLowerCase()] = errorResponse.errors[key][0];
+          });
+          setErrors(newErrors);
+        }
       },
     });
   };
@@ -73,8 +84,8 @@ const BusinessRegisterPage = () => {
               placeholder="Store Name"
               value={storeName}
               onChange={(e) => setStoreName(e.target.value)}
-              required
             />
+            {errors.name && <div className="error">{errors.name}</div>}
           </div>
           <div className="store-type">
             <input
@@ -82,8 +93,10 @@ const BusinessRegisterPage = () => {
               placeholder="Store Type"
               value={storeType}
               onChange={(e) => setStoreType(e.target.value)}
-              required
             />
+            {errors.storetype && (
+              <div className="error">{errors.storetype}</div>
+            )}
           </div>
           <div className="phone-number">
             <input
@@ -91,8 +104,10 @@ const BusinessRegisterPage = () => {
               placeholder="Phone Number"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              required
             />
+            {errors.phonenumber && (
+              <div className="error">{errors.phonenumber}</div>
+            )}
           </div>
           <div className="email">
             <input
@@ -100,8 +115,8 @@ const BusinessRegisterPage = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
+            {errors.email && <div className="error">{errors.email}</div>}
           </div>
           <div className="password">
             <input
@@ -109,8 +124,8 @@ const BusinessRegisterPage = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
+            {errors.password && <div className="error">{errors.password}</div>}
           </div>
           <div className="confirm-password">
             <input
@@ -118,11 +133,7 @@ const BusinessRegisterPage = () => {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              required
             />
-            {passwordError && (
-              <div className="passwordError">{passwordError}</div>
-            )}
           </div>
         </div>
         <div className="address-info">
@@ -132,8 +143,10 @@ const BusinessRegisterPage = () => {
               placeholder="Address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              required
             />
+            {errors.streetinformation && (
+              <div className="error">{errors.streetinformation}</div>
+            )}
           </div>
           <div className="except-address">
             <div className="postal-code">
@@ -142,8 +155,10 @@ const BusinessRegisterPage = () => {
                 placeholder="Postal Code"
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
-                required
               />
+              {errors.postalcode && (
+                <div className="error">{errors.postalcode}</div>
+              )}
             </div>
             <div className="city">
               <input
@@ -151,8 +166,8 @@ const BusinessRegisterPage = () => {
                 placeholder="City"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                required
               />
+              {errors.city && <div className="error">{errors.city}</div>}
             </div>
             <div className="country">
               <input
@@ -160,8 +175,8 @@ const BusinessRegisterPage = () => {
                 placeholder="Country"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                required
               />
+              {errors.country && <div className="error">{errors.country}</div>}
             </div>
           </div>
         </div>

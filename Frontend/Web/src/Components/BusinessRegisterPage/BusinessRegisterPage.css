@@ -65,8 +65,9 @@ form input {
     cursor: pointer;
 }
 
-.passwordError {
-    font-weight: 500;
-    font-size: 0.8rem;
+.error {
+    margin-left: 0.5rem;
     color: firebrick;
+    font-style: italic;
 }
+

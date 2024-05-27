@@ -3,12 +3,13 @@ import Footer from "../Footer/Footer";
 import "./BusinessDatabasePage.css";
 import $ from "jquery";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 // import Card from 'react-bootstrap/Card';
 import ProductCard from "../ProductCard/ProductCard";
 
 const BusinessDatabasePage = () => {
+  const navigate = useNavigate();
   const products = [
     {
       id: 1,
@@ -26,6 +27,13 @@ const BusinessDatabasePage = () => {
     },
     // Add more products as needed
   ];
+
+  const handleEditInventory = (e) => {
+    e.preventDefault();
+    // Add authentication logic here
+
+    navigate("/edit-inventory"); // Redirect to the /database page
+  };
 
   useEffect(() => {
     document.title = "FoodLeftover | Business Database Page";
@@ -45,7 +53,7 @@ const BusinessDatabasePage = () => {
       </div>
 
       <div className="underitemsbuttons">
-        <button>Edit Inventory</button>
+        <button onClick={handleEditInventory}>Edit Inventory</button>
         <button>Delete Inventory</button>
         <button>Account Settings</button>
       </div>

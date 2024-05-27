@@ -63,5 +63,9 @@
     cursor: pointer;
 }
 
+.profileIcon {
+    display: flex;
+    justify-content: end;
+}
 
   
