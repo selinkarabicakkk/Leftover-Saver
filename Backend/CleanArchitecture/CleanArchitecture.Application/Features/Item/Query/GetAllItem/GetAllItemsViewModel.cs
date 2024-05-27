@@ -7,6 +7,7 @@ namespace CleanArchitecture.Core.Features.Item.Query.GetAllItem
     public class GetAllItemsViewModel
 
     {
+        public int Id { get; set; }  
         public int RestaurantID { get; } // Foreign key to Business
         public string itemName { get; set; }
         public double price { get; set; }
