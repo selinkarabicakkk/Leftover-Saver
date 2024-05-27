@@ -15,7 +15,6 @@ function fetchData() {
     type: "GET", // HTTP method
     dataType: "json", // Expected data type of the response
     success: function (response) {
-      console.log(response); // Handle the response on success
       displayData(response); // Call a function to display the data
     },
     error: function (xhr, status, error) {
