@@ -13,7 +13,7 @@ namespace CleanArchitecture.Core.Features.Item.Command.CreateItem
     {
 
 
-       // public string RestaurantID { get; } // Foreign key to Business
+        public int RestaurantId { get; set; } // Foreign key to Business
         public string itemName { get; set; }
         public double price { get; set; }
         public string picture { get; set; }
@@ -38,7 +38,7 @@ namespace CleanArchitecture.Core.Features.Item.Command.CreateItem
         {
             var newItem = new Entities.Item
             {
-
+                RestaurantId=request.RestaurantId,
                 itemName = request.itemName,
                 price = request.price,
                 picture = request.picture,
