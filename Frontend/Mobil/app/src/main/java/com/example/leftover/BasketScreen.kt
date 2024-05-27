@@ -130,7 +130,7 @@ fun BasketInfo(
             }
         }
 
-        Spacer(modifier = Modifier.padding(200.dp))
+        Spacer(modifier = Modifier.padding(160.dp))
 
         Text(text = "Reservations will be canceled after 1 hour",modifier = Modifier.background(
             Color.LightGray))

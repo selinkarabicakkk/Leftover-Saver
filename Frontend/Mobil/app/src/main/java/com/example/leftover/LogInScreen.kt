@@ -79,6 +79,5 @@ fun LogInScreenPreview(){
     LogInScreen(
         onLogInButtonClicked = {},
         onSignUpButtonClicked= {},
-
     )
 }

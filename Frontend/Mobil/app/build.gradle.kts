@@ -50,6 +50,27 @@ android {
 }
 
 dependencies {
+
+
+    //Compose ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
+
+    //Compose LiveData
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.7")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Moshi
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    //OkHttp Interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+
+
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

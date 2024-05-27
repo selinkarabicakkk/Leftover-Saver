@@ -89,7 +89,7 @@ fun LeftOverApp() {
                 onProfilePageButtonClicked = {
                     navController.navigate(LeftOverScreen.Profile.name)
                 },
-                onRestaurantBoxClicked = {
+                onRestaurantCardClicked = {
                     navController.navigate(LeftOverScreen.Restaurant.name)
                 },
                 onLocationButtonClicked = {
