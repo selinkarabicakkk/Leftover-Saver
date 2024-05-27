@@ -7,9 +7,8 @@ using System.Text;
 namespace CleanArchitecture.Core.Entities
 {
 
-    public class CartItem: Item
+    public class CartItem: AuditableBaseEntity
     {
-        public int CartItemId { get; set; }
         public int ItemId { get; set; }
         public Item Item { get; set; }
 

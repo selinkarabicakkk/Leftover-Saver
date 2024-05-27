@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.Controllers.v1
 {
-    [ApiVersion("1.0")]
     public class CartController : BaseApiController
     {
 

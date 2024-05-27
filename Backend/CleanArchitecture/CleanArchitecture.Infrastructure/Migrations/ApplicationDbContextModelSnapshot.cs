@@ -152,6 +152,44 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("Baskets");
                 });
 
+            modelBuilder.Entity("CleanArchitecture.Core.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("pieceNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ItemId");
+
+                    b.ToTable("BasketItems");
+                });
+
             modelBuilder.Entity("CleanArchitecture.Core.Entities.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -248,10 +286,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
 
@@ -278,8 +312,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("Items");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Item");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Core.Entities.Reservation", b =>
@@ -631,29 +663,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.CartItem", b =>
-                {
-                    b.HasBaseType("CleanArchitecture.Core.Entities.Item");
-
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CartItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("pieceNumber")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasDiscriminator().HasValue("CartItem");
-                });
-
             modelBuilder.Entity("CleanArchitecture.Core.DTOs.Account.RefreshToken", b =>
                 {
                     b.HasOne("CleanArchitecture.Infrastructure.Models.ApplicationUser", null)
@@ -679,6 +688,25 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("customer");
+                });
+
+            modelBuilder.Entity("CleanArchitecture.Core.Entities.CartItem", b =>
+                {
+                    b.HasOne("CleanArchitecture.Core.Entities.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CleanArchitecture.Core.Entities.Item", "Item")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Core.Entities.Favourites", b =>
@@ -794,25 +822,6 @@ namespace CleanArchitecture.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CleanArchitecture.Core.Entities.CartItem", b =>
-                {
-                    b.HasOne("CleanArchitecture.Core.Entities.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CleanArchitecture.Core.Entities.Item", "Item")
-                        .WithMany("CartItems")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Item");
                 });
 
             modelBuilder.Entity("CleanArchitecture.Core.Entities.Cart", b =>
