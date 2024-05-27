@@ -7,5 +7,6 @@ namespace CleanArchitecture.Core.Interfaces.Repositories
     {
         
         Task<Cart> GetCartByCustomerIdAsync(int customerId);
+       
     }
 }

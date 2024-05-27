@@ -5,5 +5,6 @@ namespace CleanArchitecture.Core.Interfaces.Repositories
 {
     public interface ICartItemRepositoryAsync : IGenericRepositoryAsync<CartItem>
     {
+        Task<CartItem> GetCartItemByIdAsync(int cartItemId);
     }
 }

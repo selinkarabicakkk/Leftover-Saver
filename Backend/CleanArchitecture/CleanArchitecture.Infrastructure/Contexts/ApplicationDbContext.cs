@@ -98,7 +98,6 @@ namespace CleanArchitecture.Infrastructure.Contexts
         .HasForeignKey(r => r.RestaurantId) // Foreign key in Reservation entity
         .OnDelete(DeleteBehavior.NoAction); // Prevent cascading delete
 
-           
 
             //All Decimals will have 18,6 Range
             foreach (var property in builder.Model.GetEntityTypes()

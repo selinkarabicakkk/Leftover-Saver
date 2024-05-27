@@ -28,7 +28,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         }
 
         //POST /api/restaurant
-        [HttpPost]
+        [HttpPost("create/restaurant")]
         public async Task<IActionResult> Post(CreateRestaurantCommand command)
         {
             return Ok(await Mediator.Send(command));

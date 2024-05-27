@@ -21,6 +21,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
             _cartItems = dbContext.Set<CartItem>();
         }
 
-        
+        public async Task<CartItem> GetCartItemByIdAsync(int cartItemId)
+        {
+            return await _cartItems.FirstOrDefaultAsync(ci => ci.CartItemId == cartItemId);
+        }
+
     }
 }
