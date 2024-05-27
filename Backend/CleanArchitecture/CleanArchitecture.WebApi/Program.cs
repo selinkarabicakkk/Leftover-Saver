@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Threading.Tasks;
+using CleanArchitecture.Core.Interfaces.Repositories;
+using CleanArchitecture.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,19 @@ builder.Services.AddControllers();
 builder.Services.AddApiVersioningExtension();
 builder.Services.AddHealthChecks();
 builder.Services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
+
+
+builder.Services.AddScoped<IRestaurantRepositoryAsync, RestaurantRepositoryAsync>();
+
+
+// Add session services
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 // Build the application
 var app = builder.Build();
@@ -47,6 +62,11 @@ else
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+// Add session middleware
+app.UseSession();
+
+
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseAuthentication();
 app.UseAuthorization();
