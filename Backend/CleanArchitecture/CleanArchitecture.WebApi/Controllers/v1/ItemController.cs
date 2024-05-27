@@ -24,14 +24,15 @@ namespace CleanArchitecture.WebApi.Controllers.v1
 
         //GET /api/item
         [HttpGet]
-        public async Task<IActionResult> GetAllItems([FromQuery] GetAllItemsQuery query)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedResponse<IEnumerable<GetAllItemsViewModel>>))]
+        public async Task<PagedResponse<IEnumerable<GetAllItemsViewModel>>> Get([FromQuery] GetAllItemsParameter filter)
         {
-            var response = await Mediator.Send(query);
-            return Ok(response);
+            return await Mediator.Send(new GetAllItemsQuery() { pageSize = filter.PageSize, pageNumber = filter.PageNumber });
         }
 
         // DELETE /api/item/{id} 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteItemCommand { Id = id }));
@@ -39,6 +40,7 @@ namespace CleanArchitecture.WebApi.Controllers.v1
 
         
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Put(int id, UpdateItemCommand command)
         {
             if (id != command.Id)

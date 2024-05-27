@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CleanArchitecture.Core.Wrappers
+﻿namespace CleanArchitecture.Core.Wrappers
 {
     public class PagedResponse<T> : Response<T>
     {
@@ -16,8 +14,5 @@ namespace CleanArchitecture.Core.Wrappers
             this.Succeeded = true;
             this.Errors = null;
         }
-
-        
-
     }
 }
