@@ -17,22 +17,37 @@ const BusinessRegisterPage = () => {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+
+    setPasswordError("");
+
     $.ajax({
-      url: "https://localhost:9001/api/Account/register",
+      url: "https://foodleftoversaver.azurewebsites.net/api/v1/Restaurant",
       type: "POST",
       contentType: "application/json;",
-      data: {
-        name: "selindenemeapi",
-        lastName: "asdasd",
-        email: "selin@gmail.com",
-        userName: "wow",
-        password: "wowow",
-        confirmPassword: "wowow",
+      dataType: "json",
+      data: JSON.stringify({
+        name: storeName,
+        email: email,
+        password: password,
+        phoneNumber: phoneNumber,
+        streetInformation: address,
+        city: city,
+        postalCode: postalCode,
+        country: country,
+        storeType: storeType,
+      }),
+      success: function (response) {
+        console.log("Success:", response);
       },
-      success: function (response) {},
       error: function (error) {
         console.log("Error:", error);
       },
@@ -58,6 +73,7 @@ const BusinessRegisterPage = () => {
               placeholder="Store Name"
               value={storeName}
               onChange={(e) => setStoreName(e.target.value)}
+              required
             />
           </div>
           <div className="store-type">
@@ -66,6 +82,7 @@ const BusinessRegisterPage = () => {
               placeholder="Store Type"
               value={storeType}
               onChange={(e) => setStoreType(e.target.value)}
+              required
             />
           </div>
           <div className="phone-number">
@@ -74,6 +91,7 @@ const BusinessRegisterPage = () => {
               placeholder="Phone Number"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              required
             />
           </div>
           <div className="email">
@@ -82,6 +100,7 @@ const BusinessRegisterPage = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="password">
@@ -90,6 +109,7 @@ const BusinessRegisterPage = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className="confirm-password">
@@ -98,7 +118,11 @@ const BusinessRegisterPage = () => {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
+            {passwordError && (
+              <div className="passwordError">{passwordError}</div>
+            )}
           </div>
         </div>
         <div className="address-info">
@@ -108,6 +132,7 @@ const BusinessRegisterPage = () => {
               placeholder="Address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              required
             />
           </div>
           <div className="except-address">
@@ -117,6 +142,7 @@ const BusinessRegisterPage = () => {
                 placeholder="Postal Code"
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
+                required
               />
             </div>
             <div className="city">
@@ -125,6 +151,7 @@ const BusinessRegisterPage = () => {
                 placeholder="City"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
+                required
               />
             </div>
             <div className="country">
@@ -133,6 +160,7 @@ const BusinessRegisterPage = () => {
                 placeholder="Country"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
+                required
               />
             </div>
           </div>
