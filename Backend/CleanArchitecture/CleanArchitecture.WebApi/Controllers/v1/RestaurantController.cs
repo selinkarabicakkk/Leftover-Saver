@@ -1,10 +1,14 @@
 using CleanArchitecture.Core.Features.Restaurant.Command.CreateRestaurant;
 using CleanArchitecture.Core.Features.Restaurant.Command.DeleteRestaurant;
+using CleanArchitecture.Core.Features.Restaurant.Command.ResetPassword;
+using CleanArchitecture.Core.Features.Restaurant.Command.SignInRestaurant;
 using CleanArchitecture.Core.Features.Restaurant.Command.UpdateRestaurant;
 using CleanArchitecture.Core.Features.Restaurant.Query.GetAllRestaurants;
 using CleanArchitecture.Core.Features.Restaurant.Query.GetRestaurantById;
 using CleanArchitecture.Core.Features.Restaurant.Query.GetRestaurantsByName;
+using CleanArchitecture.Core.Interfaces.Repositories;
 using CleanArchitecture.Core.Wrappers;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +20,55 @@ namespace CleanArchitecture.WebApi.Controllers.v1
     [ApiVersion("1.0")]
     public class RestaurantController : BaseApiController
     {
+
+
+        private readonly IRestaurantRepositoryAsync _restaurantRepository;
+
+        public RestaurantController(IRestaurantRepositoryAsync restaurantRepository)
+        {
+            _restaurantRepository = restaurantRepository;
+        }
+
         //POST /api/restaurant
         [HttpPost]
         public async Task<IActionResult> Post(CreateRestaurantCommand command)
         {
             return Ok(await Mediator.Send(command));
         }
+
+
+
+        // POST /api/restaurant/signin
+        [HttpPost("signin")]
+        public async Task<IActionResult> SignIn(SignInRestaurantCommand command)
+        {
+            var result = await Mediator.Send(command);
+            if (result.Success)
+            {
+                // If success, create session
+                HttpContext.Session.SetString("RestaurantEmail", command.Email);
+                return Ok(new { message = "Sign-in successful." });
+            }
+
+            return Unauthorized(new { message = result.ErrorMessage });
+        }
+
+        // GET /api/restaurant/profile
+        [HttpGet("profile")]
+        public IActionResult GetProfile()
+        {
+            var email = HttpContext.Session.GetString("RestaurantEmail");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized(new { message = "Not signed in." });
+            }
+
+            var restaurant = _restaurantRepository.GetByEmailAsync(email).Result;
+            return Ok(restaurant);
+        }
+
+
+
 
         //GET /api/restaurant
         [HttpGet]
@@ -64,6 +111,21 @@ namespace CleanArchitecture.WebApi.Controllers.v1
         {
             return await Mediator.Send(new GetRestaurantsByNameQuery() { SearchString= filter.SearchString,PageSize=filter.PageSize, PageNumber = filter.PageNumber });
         }
-    }
+
+       
+
+            [HttpPost("reset-password")]
+            public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
+            {
+                var result = await Mediator.Send(command);
+                if (result.Success)
+                {
+                    return Ok(new { message = "Your password has been reset successfully." });
+                }
+
+                return BadRequest(new { message = result.ErrorMessage });
+            }
+        }
+    
 }
 

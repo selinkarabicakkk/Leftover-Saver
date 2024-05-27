@@ -12,8 +12,8 @@ namespace CleanArchitecture.Core.Features.Item.Command.CreateItem
     public class CreateItemCommand : IRequest<int>
     {
 
+        public int RestaurantId { get; set; }
 
-       // public string RestaurantID { get; } // Foreign key to Business
         public string itemName { get; set; }
         public double price { get; set; }
         public string picture { get; set; }
@@ -39,11 +39,12 @@ namespace CleanArchitecture.Core.Features.Item.Command.CreateItem
             var newItem = new Entities.Item
             {
 
+                RestaurantId = request.RestaurantId,
                 itemName = request.itemName,
                 price = request.price,
                 picture = request.picture,
                 explanation = request.explanation,
-                
+
             };
 
             await _itemRepositoryAsync.AddAsync(newItem);

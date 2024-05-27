@@ -11,6 +11,8 @@ namespace CleanArchitecture.Core.Interfaces.Repositories
     {
         Task<PagedResponse<IEnumerable<GetAllRestaurantsViewModel>>> GetRestaurantsByName(GetRestaurantsByNameParameter parameter);
 
+        Task<Restaurant> GetByEmailAsync(string email);
+        
 
     }
 }

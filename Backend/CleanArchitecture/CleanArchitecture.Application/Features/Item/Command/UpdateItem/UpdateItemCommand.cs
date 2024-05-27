@@ -15,8 +15,8 @@ namespace CleanArchitecture.Core.Features.Item.Command.UpdateItem
 {
     public class UpdateItemCommand : IRequest<Response<int>>
     {
-      //  public string RestaurantID { get; }
-      public int Id { get; set; }
+        //  public string RestaurantID { get; }
+        public int Id { get; set; }
         public string itemName { get; set; }
         public double price { get; set; }
         public string picture { get; set; }
@@ -35,10 +35,10 @@ namespace CleanArchitecture.Core.Features.Item.Command.UpdateItem
                 if (item == null) throw new EntityNotFoundException("item", command.Id);
 
                 item.itemName = command.itemName;
-                item.price= command.price;
+                item.price = command.price;
                 item.picture = command.picture;
                 item.explanation = command.explanation;
-                
+
 
                 await _itemRepository.UpdateAsync(item);
 

@@ -57,6 +57,14 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return new PagedResponse<IEnumerable<GetAllRestaurantsViewModel>>(result, parameter.PageNumber, parameter.PageSize);
         }
 
+        public async Task<Restaurant> GetByEmailAsync(string email)
+        {
+            return await _restaurant.FirstOrDefaultAsync(r => r.Email == email);
+        }
+
+
+       
+
 
     }
 }
