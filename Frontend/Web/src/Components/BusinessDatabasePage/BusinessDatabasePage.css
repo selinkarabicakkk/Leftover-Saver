@@ -6,16 +6,48 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.main-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 4rem auto 5rem auto;
 }
+
+.deleteaccimg , .reservationsimg{
+    width: 22%;
+    height: 66%;
+    object-fit: cover;
+
+}
+
+ 
+
+.accounts {
+    display: flex;
+    justify-content: end;
+    margin-right: 3.5rem;
+    margin-bottom: 5rem;
+}
+
+.accounts span {
+    font-weight: 600;
+}
+
+/* .delaccdiv {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.reservationsbutton {
+    display: flex;
+    flex-direction: initial;
+} */
 
 .product-cards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    
 }
 
 .underitemsbuttons {
