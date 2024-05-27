@@ -82,7 +82,7 @@ const LoginPage = () => {
               )}
             </div>
             <div className="forgot-password">
-              <a href="#">Forgot Password?</a>
+              <Link to="/forgot-password">Forgot Password?</Link>
             </div>
             <div className="buttons">
               <button className="login-button" onClick={handleSubmit}>
