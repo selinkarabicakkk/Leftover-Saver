@@ -64,3 +64,9 @@ form input {
     background-color: #014c5a;
     cursor: pointer;
 }
+
+.passwordError {
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: firebrick;
+}
