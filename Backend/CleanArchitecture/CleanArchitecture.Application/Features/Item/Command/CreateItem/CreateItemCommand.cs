@@ -12,12 +12,8 @@ namespace CleanArchitecture.Core.Features.Item.Command.CreateItem
     public class CreateItemCommand : IRequest<int>
     {
 
-
-<<<<<<< Updated upstream
-        public int RestaurantId { get; set; } // Foreign key to Business
-=======
         public int RestaurantId { get; set; }
->>>>>>> Stashed changes
+
         public string itemName { get; set; }
         public double price { get; set; }
         public string picture { get; set; }
@@ -42,11 +38,9 @@ namespace CleanArchitecture.Core.Features.Item.Command.CreateItem
         {
             var newItem = new Entities.Item
             {
-<<<<<<< Updated upstream
+
                 RestaurantId=request.RestaurantId,
-=======
-                RestaurantId = request.RestaurantId,
->>>>>>> Stashed changes
+
                 itemName = request.itemName,
                 price = request.price,
                 picture = request.picture,
