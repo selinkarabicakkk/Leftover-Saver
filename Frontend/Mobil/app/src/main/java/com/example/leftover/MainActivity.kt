@@ -4,23 +4,28 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.leftover.ui.theme.LeftOverTheme
+import com.squareup.moshi.Json
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
+        getActionBar()?.hide()
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        getActionBar()?.hide()
         setContent {
             LeftOverTheme {
                 LeftOverApp()
@@ -30,12 +35,24 @@ class MainActivity : ComponentActivity() {
 
 }
 
+@Composable
+fun WizardData(modifier: Modifier = Modifier, viewModel: FoodLeftOverViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
+    //val json = viewModel.restaurantData
+    //val jsonParser = JsonParser(json.toString())
+    //jsonParser.displayItems()
+
+    //val restaurantList = viewModel.restaurantList
+    //System.out.println(restaurantList)
+
+
+}
+
 
 
 @Preview(showBackground = true)
 @Composable
 fun LeftOverAppPreview() {
     LeftOverTheme {
-        LeftOverApp()
+        WizardData()
     }
 }

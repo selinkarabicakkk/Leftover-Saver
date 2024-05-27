@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -26,10 +29,14 @@ import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.sharp.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -53,69 +60,18 @@ fun RestaurantScreen(
     onProfilePageButtonClicked : () -> Unit,
     onLocationButtonClicked: () -> Unit
 ) {
-    Surface(
-        color = colorResource(id = R.color.Alabaster)
-    ) {
-        Column(modifier = Modifier.background(color = colorResource(id = R.color.Alabaster))) {
-            UpPart(onLocationButtonClicked = onLocationButtonClicked )
-            Spacer(modifier = Modifier.weight(1f))
-            RestaurantInfo()
-            Spacer(modifier = Modifier.weight(1f))
+    Scaffold(
+        topBar = { UpPart {} },
+        bottomBar = {
             BottomPart(
-                onHomePageButtonClicked = onHomePageButtonClicked,
-                onFavouritePageButtonClicked = onFavouritePageButtonClicked,
-                onBasketScreensButtonClicked = onBasketScreensButtonClicked,
-                onProfilePageButtonClicked = onProfilePageButtonClicked
-            )
+                onHomePageButtonClicked = { /*TODO*/ },
+                onFavouritePageButtonClicked = { /*TODO*/ },
+                onBasketScreensButtonClicked = { /*TODO*/ }
+            ) {}
         }
-    }
-}
-
-@Composable
-fun BottomPart(
-    onHomePageButtonClicked: () -> Unit,
-    onFavouritePageButtonClicked: () -> Unit,
-    onBasketScreensButtonClicked: () -> Unit,
-    onProfilePageButtonClicked: () -> Unit,
-) {
-    Row(
-        modifier = Modifier
-            .height(60.dp)
-            .fillMaxWidth()
-            .background(colorResource(id = R.color.SkyBlue)),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        IconButton(onClick = onHomePageButtonClicked) {
-            Icon(
-                Icons.Outlined.Home,
-                contentDescription = null,
-                modifier = Modifier.size(40.dp),
-                tint = colorResource(id = R.color.Alabaster)
-            )
-        }
-        Spacer(modifier = Modifier.padding(horizontal = 20.dp))
-        IconButton(onClick = onFavouritePageButtonClicked) {
-            Icon(
-                Icons.Outlined.Favorite,
-                contentDescription = null,
-                modifier = Modifier.size(40.dp)
-            )
-        }
-        Spacer(modifier = Modifier.padding(horizontal = 20.dp))
-        IconButton(onClick = onBasketScreensButtonClicked) {
-            Icon(
-                Icons.Outlined.ShoppingCart,
-                contentDescription = null,
-                modifier = Modifier.size(40.dp))
-        }
-        Spacer(modifier = Modifier.padding(horizontal = 20.dp))
-        IconButton(onClick = onProfilePageButtonClicked) {
-            Icon(
-                Icons.Outlined.AccountCircle,
-                contentDescription = null,
-                modifier = Modifier.size(40.dp)
-            )
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            RestaurantInfo()
         }
     }
 }
@@ -182,62 +138,6 @@ fun RestaurantInfo() {
             Text(text = "Campaigns and Coupons")
         }
 
-        Spacer(modifier = Modifier.padding(20.dp))
-
-        Box(
-            modifier = Modifier
-                .background(colorResource(id = R.color.SkyBlue))
-                .fillMaxWidth()
-                .height(100.dp)
-                .padding(10.dp)
-        ){
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                Column {
-                    Text(text = "Food Name")
-                    Spacer(modifier = Modifier.weight(1f))
-                    Text(text = "Food Ingrediants")
-                    Spacer(modifier = Modifier.weight(1f))
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(Icons.Filled.Add, contentDescription = null )
-                    }
-                }
-                Spacer(modifier = Modifier.weight(1f))
-                Image(painter = painterResource(id = R.drawable.foodleftover), contentDescription = null,modifier = Modifier.size(80.dp))
-            }
-        }
-
-        Spacer(modifier = Modifier.padding(10.dp))
-
-        Box(
-            modifier = Modifier
-                .background(colorResource(id = R.color.SkyBlue))
-                .fillMaxWidth()
-                .height(100.dp)
-                .padding(10.dp)
-        ){
-            Row(
-                modifier = Modifier
-
-                    .fillMaxSize()
-            ) {
-                Column {
-                    Text(text = "Food Name")
-                    Spacer(modifier = Modifier.weight(1f))
-                    Text(text = "Food Ingrediants")
-                    Spacer(modifier = Modifier.weight(1f))
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(Icons.Filled.Add, contentDescription = null )
-                    }
-
-                }
-                Spacer(modifier = Modifier.weight(1f))
-                Image(painter = painterResource(id = R.drawable.foodleftover), contentDescription = null,modifier = Modifier.size(80.dp))
-            }
-        }
-
         Spacer(modifier = Modifier.padding(10.dp))
 
         Box(
@@ -270,6 +170,21 @@ fun RestaurantInfo() {
 }
 
 @Composable
+fun RestaurantItemList(restaurantItemList: List<Restaurant>, modifier: Modifier ){
+    LazyColumn(modifier = modifier) {
+        items(restaurantItemList) { restaurant ->
+            RestaurantCard(
+                onRestaurantCardClicked = {},
+                restaurantName = restaurant.name,
+                restaurantType = restaurant.storeType,
+
+                )
+
+        }
+    }
+}
+
+@Composable
 fun UpPart(
     onLocationButtonClicked: () -> Unit
 ) {
@@ -277,6 +192,7 @@ fun UpPart(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.Alabaster))
+            .safeDrawingPadding()
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Spacer(modifier = Modifier.weight(0.5f))
@@ -289,12 +205,12 @@ fun UpPart(
                     Text(text = "Location")
                     Icon(Icons.Filled.KeyboardArrowDown, contentDescription = null )
                 }
-                TextField(
+                OutlinedTextField(
                     value = "Search",
                     onValueChange = {},
-                    colors = TextFieldDefaults.colors(),
-                    modifier = Modifier
-                        .clip(shape = RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp))
+                    colors = OutlinedTextFieldDefaults.colors(colorResource(id = R.color.Alabaster)),
+                    modifier = Modifier.background(colorResource(id = R.color.Alabaster))
+
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -323,6 +239,57 @@ fun RestaurantScreenPreview() {
     )
 }
 
+
+@Composable
+fun BottomPart(
+    onHomePageButtonClicked: () -> Unit,
+    onFavouritePageButtonClicked: () -> Unit,
+    onBasketScreensButtonClicked: () -> Unit,
+    onProfilePageButtonClicked: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .height(60.dp)
+            .fillMaxWidth()
+            .background(colorResource(id = R.color.SkyBlue)),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        IconButton(onClick = onHomePageButtonClicked) {
+            Icon(
+                Icons.Outlined.Home,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp),
+                tint = colorResource(id = R.color.Alabaster)
+            )
+        }
+        Spacer(modifier = Modifier.padding(horizontal = 20.dp))
+        IconButton(onClick = onFavouritePageButtonClicked) {
+            Icon(
+                Icons.Outlined.Favorite,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp)
+            )
+        }
+        Spacer(modifier = Modifier.padding(horizontal = 20.dp))
+        IconButton(onClick = onBasketScreensButtonClicked) {
+            Icon(
+                Icons.Outlined.ShoppingCart,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp))
+        }
+        Spacer(modifier = Modifier.padding(horizontal = 20.dp))
+        IconButton(onClick = onProfilePageButtonClicked) {
+            Icon(
+                Icons.Outlined.AccountCircle,
+                contentDescription = null,
+                modifier = Modifier.size(40.dp)
+            )
+        }
+    }
+}
+
+
 @Composable
 fun bottomPart(modifier: Modifier = Modifier){
         Surface(
@@ -333,7 +300,7 @@ fun bottomPart(modifier: Modifier = Modifier){
             ) {
                 Icon( Icons.Default.Home, contentDescription = null, modifier = Modifier.size(60.dp))
                 Spacer(modifier = Modifier.padding(horizontal = 15.dp))
-                Icon( Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(60.dp) )
+                Icon( Icons.Outlined.ShoppingCart, contentDescription = null, modifier = Modifier.size(60.dp) )
                 Spacer(modifier = Modifier.padding(horizontal = 15.dp))
                 Icon( Icons.Default.ShoppingCart, contentDescription = null, modifier = Modifier.size(60.dp))
                 Spacer(modifier = Modifier.padding(horizontal = 15.dp))
@@ -341,4 +308,5 @@ fun bottomPart(modifier: Modifier = Modifier){
             }
         }
 }
+
 

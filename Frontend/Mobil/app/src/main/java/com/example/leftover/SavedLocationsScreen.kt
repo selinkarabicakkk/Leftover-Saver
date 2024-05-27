@@ -37,14 +37,17 @@ fun SavedLocationsScreen(
     onEditButtonClicked:() -> Unit,
 ) {
     Surface(
-        color = colorResource(id = R.color.white)
+        color = colorResource(id = R.color.white),
+
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.background(color = colorResource(id = R.color.Alabaster))
+                modifier = Modifier.background(color = colorResource(id = R.color.Alabaster)).padding(top = 10.dp)
             ) {
                 IconButton(onClick = { onBackButtonClicked() }) {
                     Icon(Icons.Filled.Close, contentDescription = null )
