@@ -14,7 +14,7 @@ namespace CleanArchitecture.Core.Features.Reservation.Commands.CreateReservation
     {
         public int RestaurantId { get; set; }
         public int CustomerId { get; set; }
-        public ICollection<Entities.ReservationItem> ReservationItems { get; set; }
+        public ICollection<ReservationItem> ReservationItems { get; set; }
         public bool IsDelivered { get; set; }
         public bool IsCancelled { get; set; }
         public double totalPrice { get; set; }
