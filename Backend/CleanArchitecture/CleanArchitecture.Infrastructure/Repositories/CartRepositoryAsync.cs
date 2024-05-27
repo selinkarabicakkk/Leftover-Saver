@@ -11,12 +11,10 @@ namespace CleanArchitecture.Infrastructure.Repositories
     public class CartRepositoryAsync : GenericRepositoryAsync<Cart>, ICartRepositoryAsync
     {
         private readonly DbSet<Cart> _cart;
-        private readonly DbSet<CartItem> _cartItems;
 
         public CartRepositoryAsync(ApplicationDbContext dbContext) : base(dbContext)
         {
             _cart = dbContext.Set<Cart>();
-            _cartItems = dbContext.Set<CartItem>();
         }
 
 
@@ -27,10 +25,6 @@ namespace CleanArchitecture.Infrastructure.Repositories
                 .ThenInclude(ci => ci.Item)
                 .FirstOrDefaultAsync(c => c.customerId == customerId);
         }
-
-        
-
-
 
     }
 }
