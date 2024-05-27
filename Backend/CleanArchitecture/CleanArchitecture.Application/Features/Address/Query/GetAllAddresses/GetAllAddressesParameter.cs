@@ -6,7 +6,7 @@ using CleanArchitecture.Core.Filters;
 
 namespace CleanArchitecture.Core.Features.Address.Query.GetAllAddresses
 {
-    public class GetAllAddressesParameter:RequestParameter
+    public class GetAllAddressesParameter
     {
         public int PageSize { get; set; }
         public int PageNumber { get; set; }

@@ -34,24 +34,30 @@ using System.Threading.Tasks;*/
               return Ok(await Mediator.Send(command));
           }
 
-          [HttpGet]
-          [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedResponse<IEnumerable<GetAllAddressesViewModel>>))]
-          public async Task<PagedResponse<IEnumerable<GetAllAddressesViewModel>>> Get([FromQuery] GetAllAddressesParameter filter)
-          {
 
-             return await Mediator.Send(new GetAllAddressesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber });
-          }
 
-          [HttpDelete("{id}")]
-          [Authorize]
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PagedResponse<IEnumerable<GetAllAddressesViewModel>>))]
+    public async Task<PagedResponse<IEnumerable<GetAllAddressesViewModel>>> Get([FromQuery] GetAllAddressesParameter filter, [FromQuery] string userName)
+    {
+        return await Mediator.Send(new GetAllAddressesQuery()
+        {
+            PageSize = filter.PageSize,
+            PageNumber = filter.PageNumber,
+            UserName = userName
+        });
+    }
+
+
+    [HttpDelete("{id}")]
+          
           public async Task<IActionResult> Delete(int id)
           {
               return Ok(await Mediator.Send(new DeleteAddressCommand { Id = id }));
           }
 
-          [HttpPut("{id}")]
-          [Authorize]
-          public async Task<IActionResult> Put(int id, UpdateAddressCommand command)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(int id, UpdateAddressCommand command)
           {
               if (id != command.Id)
               {
@@ -62,6 +68,7 @@ using System.Threading.Tasks;*/
 
          
           [HttpGet("{id}")]
+
           public async Task<IActionResult> Get(int id)
           {
               return Ok(await Mediator.Send(new GetAddressByIdQuery { Id = id }));

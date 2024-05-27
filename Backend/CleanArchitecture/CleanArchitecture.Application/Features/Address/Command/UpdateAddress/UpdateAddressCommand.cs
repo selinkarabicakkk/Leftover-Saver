@@ -14,8 +14,8 @@ namespace CleanArchitecture.Core.Features.Address.Command.UpdateAddress
 
     public class UpdateAddressCommand : IRequest<Response<int>>
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
+        public int Id { get; set; } 
+        public string UserName { get;  }
         public string AddressDefinition { get; set; } //avene street and other info
         public string City { get; set; }
         public string Town { get; set; }
@@ -40,10 +40,10 @@ namespace CleanArchitecture.Core.Features.Address.Command.UpdateAddress
         {
 
             var address = await _addressRepositoryAsync.GetByIdAsync(request.Id);
-            if (address == null) throw new EntityNotFoundException("Address", request.Id);
-           
+            if (address == null) throw new EntityNotFoundException("Address",request.Id);
 
-            address.UserName = request.UserName;
+
+            
             address.AddressDefinition = request.AddressDefinition;
             address.City = request.City;
             address.Town = request.Town;
