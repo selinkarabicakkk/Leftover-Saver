@@ -6,67 +6,61 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using CleanArchitecture.Core.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
+using CleanArchitecture.Core.Features.Address.Command.CreateAddress;
 
 namespace CleanArchitecture.Core.Features.Reservation.Commands.CreateReservationCommand
 {
     public class CreateReservation : IRequest<int>
     {
+        
         public int RestaurantId { get; set; }
-        public int CustomerId { get; set; }
-        public ICollection<ReservationItem> ReservationItems { get; set; }
-        public bool IsDelivered { get; set; }
-        public bool IsCancelled { get; set; }
+        public int itemId { get; set; }
+        public bool isDelivered { get; set; }
+        public bool isCancelled { get; set; }
         public double totalPrice { get; set; }
         public string ReservationCode { get; set; }
+        public DateTime Created { get; set; }
+
     }
 
     public class AddReservationCommandHandler : IRequestHandler<CreateReservation, int>
     {
         private readonly IReservationRepositoryAsync _reservationRepositoryAsync;
-      
-        private readonly IReservationItemRepositoryAsync _RitemRepositoryAsync;
+        private readonly IItemRepositoryAsync _itemRepositoryAsync;
+
 
         public AddReservationCommandHandler(
-            IReservationRepositoryAsync reservationRepositoryAsync,
-           
-            IReservationItemRepositoryAsync RitemRepositoryAsync)
+            IReservationRepositoryAsync reservationRepositoryAsync, IItemRepositoryAsync itemRepositoryAsync)
         {
             _reservationRepositoryAsync = reservationRepositoryAsync;
-            _RitemRepositoryAsync = RitemRepositoryAsync;
+            _itemRepositoryAsync = itemRepositoryAsync;
         }
+
 
         public async Task<int> Handle(CreateReservation request, CancellationToken cancellationToken)
         {
-            // Check if Restaurant exists
-           
+
            
 
-            // Check if Customer exists
            
-
-            // Calculate total price
-            double totalPrice = 0.0;
-            foreach (var reservationItem in request.ReservationItems)
-            {
-                var item = await _RitemRepositoryAsync.GetByIdAsync(reservationItem.ItemID);
+                var item = await _itemRepositoryAsync.GetByIdAsync(request.itemId);
                 if (item == null)
                 {
-                    throw new InvalidOperationException($"Item with ID {reservationItem.ItemID} not found.");
+                    throw new InvalidOperationException($"Item with ID {request.itemId} not found.");
                 }
-                totalPrice += item.Item.price * reservationItem.Quantity;
-            }
-
+            double totalPrice = 0.0; // Toplam fiyatý hesaplamak için kullanacaðýz
+            totalPrice += item.price; // Ürün fiyatýný toplam fiyata ekle
+            
             var newReservation = new Entities.Reservation
             {
-                CustomerId = request.CustomerId,
+
                 RestaurantId = request.RestaurantId,
-                isDelivered = false,
-                isCancelled = false,
-                totalPrice = totalPrice,
+                isDelivered = request.isDelivered,
+                isCancelled = request.isCancelled,
+                totalPrice = request.totalPrice,
                 Created = DateTime.UtcNow,
-                ReservationCode = Guid.NewGuid().ToString(),
-                ReservationItems = request.ReservationItems
+                 ReservationCode=Guid.NewGuid().ToString()
             };
 
             await _reservationRepositoryAsync.AddAsync(newReservation);
@@ -74,4 +68,5 @@ namespace CleanArchitecture.Core.Features.Reservation.Commands.CreateReservation
             return newReservation.Id;
         }
     }
-}
+    }
+
