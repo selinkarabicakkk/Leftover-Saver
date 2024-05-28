@@ -1,93 +1,64 @@
+.delete-account-container {
+  width: 80%;
+  margin: 8rem auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-.delete-account-page {
-    width: 80%;
-    margin: 6rem auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border-radius: 4px;
+.delete-account-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.75rem;
-    font-weight: 500;     
+.message {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
 
-  }
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+}
 
-  
-  .form-group input {
-    width: 30%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
 
-  }
-  
-  /* NEDEN BUTONA CLASS İLE CSS VEREMİYORUM????????????????????? */
-  button {                                 
-    padding: 1rem 1.5rem;
-    background-color: #0097B2;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 1rem 0 0.5rem 0;
-  }
-  
-  button:hover {
-    background-color: #025361;
-  }
-  
-  .error-message {
-    color: red;
-    font-weight: 400;
-  }
-  
-  .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .popup-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .popup-content h2 {
-    margin-top: 0;
-  }
-  
-  .popup-content input {
-    width: calc(100% - 20px);
-    margin: 0 auto 10px auto;
-  }
+.delete-account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-  p {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #014c5a;
-  }
-  
-  
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.delete-button {
+  background-color: #0097B2;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #01313a;
+}
