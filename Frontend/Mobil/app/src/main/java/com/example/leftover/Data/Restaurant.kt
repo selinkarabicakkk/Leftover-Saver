@@ -14,23 +14,38 @@ data class AllRestaurant(
 )
 
 data class RestaurantById(
-    val city: String,
-    val country: String,
-    val created: String,
-    val createdBy: Any,
-    val email: String,
-    val id: Int,
-    val items: List<Any>,
-    val lastModified: Any,
-    val lastModifiedBy: Any,
     val name: String,
+    val email: String,
     val password: String,
     val phoneNumber: String,
-    val picture: String,
+    val streetInformation: String,
+    val city: String,
     val postalCode: String,
-    val reservations: Any,
+    val country: String,
     val storeType: String,
-    val streetInformation: String
+    val picture: String,
+    val items: List<Item>,
+    val reservations: String,
+    val id: Int,
+    val createdBy: String,
+    val created: String,
+    val lastModified: String,
+    val lastModifiedBy: String,
 )
 
+data class Item(
+    val itemName: String,
+    val price: Int,
+    val picture: String,
+    val explanation: String,
+    val restaurantId: Int,
+    val restaurant: String,
+    val reservationItems: String,
+    val cartItems: String,
+    val id: Int,
+    val createdBy: String,
+    val created: String,
+    val lastModifiedBy: String,
+    val lastModified: String,
+)
 

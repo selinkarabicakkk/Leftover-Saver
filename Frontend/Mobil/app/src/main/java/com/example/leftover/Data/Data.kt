@@ -12,7 +12,5 @@ data class RestaurantByIdData(
     val succeeded: Boolean,
     val message: String ?= null,
     val errors: List<String> ?= null,
-    val restaurant: RestaurantById,
-    val pageNumber: Int,
-    val pageSize: Int
+    val data: RestaurantById,
 )

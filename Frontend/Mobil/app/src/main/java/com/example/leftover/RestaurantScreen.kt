@@ -1,5 +1,6 @@
 package com.example.leftover
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -38,10 +39,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,7 +68,20 @@ fun RestaurantScreen(
     restaurantId: Int?
 ) {
 
+    //val restaurant by viewModel.restaurant.observeAsState()
+    val context = LocalContext.current
+    LaunchedEffect(restaurantId) {
+        if (restaurantId != null) {
+            Log.d("RestaurantScreen", "Loading restaurant with ID: $restaurantId")
+            viewModel.loadRestaurantById(restaurantId)
+        } else {
+            Log.d("RestaurantScreen", "No restaurant ID provided")
+        }
+    }
+
     val restaurant by viewModel.restaurant.observeAsState()
+
+    //System.out.println(restaurant!!.name)
 
     Scaffold(
         topBar = { UpPart (onLocationButtonClicked = onLocationButtonClicked) },

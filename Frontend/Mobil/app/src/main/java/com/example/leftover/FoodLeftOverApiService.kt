@@ -13,11 +13,17 @@ interface FoodLeftOverApiService {
         @Query("PageNumber") pageNumber: Int? = 1,
         @Query("PageSize") pageSize: Int? = 5
     ): AllRestaurantData
-
+/*
     @GET("/api/v{version}/Restaurant/getby/{id}")
     suspend fun getRestaurantById(
         @Path("version") version: String = "1",
-        @Path("id") id: Int? = 1,
+        @Path("id") id: Int? ,
+    ): RestaurantByIdData
+*/
+    @GET("/api/v{version}/Restaurant/getby/{id}")
+    suspend fun getRestaurantById(
+        @Path("version") version: String = "1",
+        @Path("id") id: Int,
     ): RestaurantByIdData
 }
 

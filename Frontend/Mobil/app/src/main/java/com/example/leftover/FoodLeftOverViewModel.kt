@@ -2,6 +2,7 @@ package com.example.leftover
 
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,10 +20,20 @@ class FoodLeftOverViewModel: ViewModel() {
     val restaurant: LiveData<RestaurantById> get() = _restaurant
 
 
+
+
     init {
         viewModelScope.launch {
             getAllRestaurant()
-            getRestaurantById(1)
+            //getRestaurantById(1)
+
+        }
+    }
+
+    fun loadRestaurantById(restaurantId: Int) {
+        viewModelScope.launch {
+            Log.d("FoodLeftOverViewModel", "Loading restaurant by ID: $restaurantId")
+            getRestaurantById(restaurantId)
         }
     }
 
@@ -43,7 +54,21 @@ class FoodLeftOverViewModel: ViewModel() {
 
 
     private suspend fun getRestaurantById(restaurantId: Int){
-        try {
+
+            try {
+                val response = RetrofitClient.foodLeftOverApiService.getRestaurantById(id = restaurantId)
+                if (response.succeeded) {
+                    _restaurant.postValue(response.data)
+                } else {
+                    // Handle the error case
+                    System.out.println("Restaurant not found")
+                }
+            } catch (e: Exception) {
+                // Handle the exception
+                System.out.println("Exception")
+            }
+
+        /*try {
             val response = RetrofitClient.foodLeftOverApiService.getRestaurantById()
             if (response.succeeded) {
                 _restaurant.postValue(response.restaurant)
@@ -54,6 +79,6 @@ class FoodLeftOverViewModel: ViewModel() {
         } catch (e: Exception) {
             // Handle the exception
             System.out.println("Exception")
-        }
+        }*/
     }
 }
