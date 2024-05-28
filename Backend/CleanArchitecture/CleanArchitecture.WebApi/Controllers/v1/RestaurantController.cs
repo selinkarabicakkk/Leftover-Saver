@@ -80,7 +80,6 @@ namespace CleanArchitecture.WebApi.Controllers.v1
 
         // DELETE /api/restaurant/{id} 
         [HttpDelete("delete/{id}")]
-        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteRestaurantCommand { Id = id }));
