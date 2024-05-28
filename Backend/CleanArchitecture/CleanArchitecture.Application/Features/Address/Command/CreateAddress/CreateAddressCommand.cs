@@ -11,7 +11,6 @@ namespace CleanArchitecture.Core.Features.Address.Command.CreateAddress
 {
     public class CreateAddressCommand : IRequest<int>
     {
-        public int Id { get; set; }
         public string UserName { get; set; }
         public string AddressDefinition { get; set; } //avene street and other info
         public string City { get; set; }
