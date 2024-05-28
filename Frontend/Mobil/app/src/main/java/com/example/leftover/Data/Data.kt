@@ -14,3 +14,12 @@ data class RestaurantByIdData(
     val errors: List<String> ?= null,
     val data: RestaurantById,
 )
+
+data class RegisterResponse(
+    val succeeded: Boolean,
+    val message: String,
+    val errors: List<String>?,
+    val data: String?
+)
+
+
