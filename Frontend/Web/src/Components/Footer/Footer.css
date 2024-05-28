@@ -12,24 +12,26 @@
     font-size: 0.8rem;
 }
 
-.buttons {
+.mediabuttons {
     display: flex;
     gap: 2rem;
 
 }
-.buttons button {
+.mediabuttons button {
     background-color: #0097B2;
     border: none;
-    padding: 22px 14px;
+    padding: 1.5rem 1rem;
     border-radius: 8px;
     color: #fff;
+    line-height: 1rem;
+    
 }
 
-.buttons button i {
+.mediabuttons button i {
     margin-left: 2.7rem;
 }
 
-.buttons button:hover {
+.mediabuttons button:hover {
     background-color: #014c5a;
     cursor: pointer;
 }

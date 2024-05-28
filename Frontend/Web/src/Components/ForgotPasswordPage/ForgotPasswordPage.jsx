@@ -26,7 +26,7 @@ const ForgotPasswordPage = () => {
       data: JSON.stringify({ email }),
       success: () => {
         setStep(2);
-        setMessage("Check your email for further instructions");
+        setMessage("Check your email!");
       },
       error: () => {
         setError("Error sending email");
@@ -63,16 +63,16 @@ const ForgotPasswordPage = () => {
         {step === 1 && (
           <form onSubmit={handleEmailSubmit}>
             <div className="input-group">
-              <label htmlFor="email">Email:</label>
               <input
                 type="email"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
                 required
               />
             </div>
-            <button type="submit">Send Email</button>
+            <button type="submit">Send</button>
             {message && <p className="message">{message}</p>}
             {error && <p className="error">{error}</p>}
           </form>
@@ -125,9 +125,9 @@ const ForgotPasswordPage = () => {
           </form>
         )}
         {step === 3 && (
-          <div>
+          <div className="redirect-login">
             <p>
-              Password updated successfully. You can now{" "}
+              Password updated successfully! You can now{" "}
               <div className="login-button">
                 <Link to="/sign-in">Sign In</Link>
               </div>
