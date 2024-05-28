@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,22 +41,23 @@ fun FavouriteScreen(
     onLocationButtonClicked: () -> Unit
 
 ){
-    Surface(
-        color = colorResource(id = R.color.Alabaster)
-    ) {
-        Column {
-            UpPart(onLocationButtonClicked)
-            FavouriteInfo(
-                onRestaurantBoxClicked = onRestaurantBoxClicked
-            )
+    Scaffold(
+        topBar = { UpPart(onLocationButtonClicked) },
+        bottomBar = {
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
                 onBasketScreensButtonClicked = onBasketScreensButtonClicked,
-                onProfilePageButtonClicked = onProfilePageButtonClicked,
-
+                onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
+    ) {innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            FavouriteInfo(
+                onRestaurantBoxClicked = onRestaurantBoxClicked
+            )
+        }
+
     }
 }
 

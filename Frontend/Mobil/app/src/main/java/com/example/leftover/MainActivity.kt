@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,13 +38,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun WizardData(modifier: Modifier = Modifier, viewModel: FoodLeftOverViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
-    //val json = viewModel.restaurantData
-    //val jsonParser = JsonParser(json.toString())
-    //jsonParser.displayItems()
-
-    //val restaurantList = viewModel.restaurantList
-    //System.out.println(restaurantList)
-
+    val data = viewModel.restaurant.observeAsState().value.toString()
+    val datax = viewModel.restaurantList.observeAsState().value.toString()
+    if(data != null) {
+        Text(text = datax)
+    }
 
 }
 

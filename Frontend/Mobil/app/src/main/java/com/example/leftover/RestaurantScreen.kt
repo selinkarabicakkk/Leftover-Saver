@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
@@ -29,7 +28,6 @@ import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.material.icons.sharp.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -39,45 +37,60 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.example.leftover.Data.AllRestaurant
+import com.example.leftover.Data.RestaurantById
 
 
 @Composable
 fun RestaurantScreen(
     modifier: Modifier = Modifier,
     onHomePageButtonClicked: () -> Unit,
-    onFavouritePageButtonClicked : () -> Unit,
-    onBasketScreensButtonClicked : () -> Unit,
-    onProfilePageButtonClicked : () -> Unit,
-    onLocationButtonClicked: () -> Unit
+    onFavouritePageButtonClicked: () -> Unit,
+    onBasketScreensButtonClicked: () -> Unit,
+    onProfilePageButtonClicked: () -> Unit,
+    onLocationButtonClicked: () -> Unit,
+    viewModel: FoodLeftOverViewModel = viewModel(),
+    navController: NavController,
+    restaurantId: Int?
 ) {
+
+    val restaurant by viewModel.restaurant.observeAsState()
+
     Scaffold(
-        topBar = { UpPart {} },
+        topBar = { UpPart (onLocationButtonClicked = onLocationButtonClicked) },
         bottomBar = {
             BottomPart(
-                onHomePageButtonClicked = { /*TODO*/ },
-                onFavouritePageButtonClicked = { /*TODO*/ },
-                onBasketScreensButtonClicked = { /*TODO*/ }
-            ) {}
+                onHomePageButtonClicked = onHomePageButtonClicked,
+                onFavouritePageButtonClicked = onFavouritePageButtonClicked,
+                onBasketScreensButtonClicked = onBasketScreensButtonClicked,
+                onProfilePageButtonClicked = onProfilePageButtonClicked
+            )
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            RestaurantInfo()
+            if (restaurant != null) {
+                RestaurantInfo(restaurant!!)
+            } else {
+                // You can display a loading indicator or a placeholder here
+                Text("Loading...")
+            }
         }
     }
 }
 
 @Composable
-fun RestaurantInfo() {
+fun RestaurantInfo(restaurant: RestaurantById) {
     Column(
         modifier = Modifier.padding(top = 30.dp, start = 15.dp, end = 15.dp)
     ) {
@@ -104,7 +117,9 @@ fun RestaurantInfo() {
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,
                         ) {
-                        Text(text = "Restaurant Name")
+                        if (restaurant != null) {
+                            Text(text = restaurant.name)
+                        }
                         Spacer(modifier = Modifier.weight(1f))
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(Icons.Filled.Favorite, contentDescription = null)
@@ -170,14 +185,15 @@ fun RestaurantInfo() {
 }
 
 @Composable
-fun RestaurantItemList(restaurantItemList: List<Restaurant>, modifier: Modifier ){
+fun RestaurantItemList(restaurantItemList: List<RestaurantById>, modifier: Modifier,navController: NavController ){
     LazyColumn(modifier = modifier) {
         items(restaurantItemList) { restaurant ->
             RestaurantCard(
                 onRestaurantCardClicked = {},
                 restaurantName = restaurant.name,
                 restaurantType = restaurant.storeType,
-
+                restaurantId = restaurant.id,
+                navController = navController
                 )
 
         }
@@ -191,7 +207,7 @@ fun UpPart(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = colorResource(id = R.color.Alabaster))
+            .background(color = colorResource(id = R.color.white))
             .safeDrawingPadding()
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -226,7 +242,7 @@ fun UpPart(
     }
 }
 
-
+/*
 @Preview
 @Composable
 fun RestaurantScreenPreview() {
@@ -235,9 +251,13 @@ fun RestaurantScreenPreview() {
         onFavouritePageButtonClicked = {},
         onBasketScreensButtonClicked = {},
         onProfilePageButtonClicked = {},
-        onLocationButtonClicked = {}
+        onLocationButtonClicked = {},
+        restaurantId = 1,
+        navController = null
     )
 }
+
+ */
 
 
 @Composable

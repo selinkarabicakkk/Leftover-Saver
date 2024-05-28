@@ -1,29 +1,15 @@
 package com.example.leftover
 
-import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
 
 enum class LeftOverScreen() {
@@ -39,253 +25,255 @@ fun LeftOverApp() {
 
     val backStackEntry by navController.currentBackStackEntryAsState()
 
-    /*
-    val currentScreen = LeftOverScreen.valueOf(
-        backStackEntry?.destination?.route ?: LeftOverScreen.Profile.name
-    )
-    //val viewModel: OrderViewModel = viewModel( )
-    */
-
-
     NavHost(
         navController = navController,
-        startDestination = LeftOverScreen.HomePage.name
+        startDestination = "HomePage"
     ) {
-        composable(route = LeftOverScreen.LogIn.name) {
+        composable(route = "LoginPage") {
             LogInScreen(
                 onLogInButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("-HomePage-")
                 },
                 onSignUpButtonClicked = {
-                    navController.navigate(LeftOverScreen.SignUp.name)
+                    navController.navigate("SignUp")
                 },
             )
         }
-        composable(route = LeftOverScreen.SignUp.name) {
+        composable(route = "SignUp") {
             SignUpScreen(
                 onLogInButtonClicked = {
-                    navController.navigate(LeftOverScreen.LogIn.name)
+                    navController.navigate("LogIn")
                 },
                 onSignUpButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onContinueWithGoogleButtonClicked = {
-                    navController.navigate(LeftOverScreen.SignUp.name)
+                    navController.navigate("SignUp")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.HomePage.name) {
+        composable(route = "HomePage") {
             HomePageScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate( "HomePage")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onBasketScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Basket.name)
+                    navController.navigate("Basket")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onRestaurantCardClicked = {
-                    navController.navigate(LeftOverScreen.Restaurant.name)
+                    navController.navigate("Restaurant/{restaurantId}")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
-                }
+                    navController.navigate("SavedLocations")
+                },
+                navController = navController
             )
         }
 
-        composable(route = LeftOverScreen.DesiredStore.name) {
+        composable(route = "DesiredStore") {
             DesiredStoreScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onBasketScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Basket.name)
+                    navController.navigate("Basket")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onFilterRowClicked = {
-                    navController.navigate(LeftOverScreen.Filter.name)
+                    navController.navigate("Filter")
                 },
                 onRestaurantBoxClicked = {
-                    navController.navigate(LeftOverScreen.Restaurant.name)
+                    navController.navigate("Restaurant")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
+                    navController.navigate("SavedLocations")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.Filter.name) {
+        composable(route = "Filter") {
             FilterScreen(
             )
         }
 
-        composable(route = LeftOverScreen.Restaurant.name) {
+        composable(route = "Restaurant/{restaurantId}",
+            arguments = listOf(
+                navArgument(name = "restaurantId"){
+                    type = NavType.IntType
+                }
+            )
+        ) {index ->
             RestaurantScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onBasketScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Basket.name)
+                    navController.navigate("Basket")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
-                }
+                    navController.navigate("SavedLocations")
+                },
+                restaurantId = index.arguments?.getInt("restaurantId"),
+                navController = navController
+
             )
         }
 
-        composable(route = LeftOverScreen.Basket.name) {
+        composable(route = "Basket") {
             BasketScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onReservationScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Reservations.name)
+                    navController.navigate("Reservations")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onReserveButtonClicked = {
-                    navController.navigate(LeftOverScreen.Restaurant.name)
+                    navController.navigate("Restaurant")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
+                    navController.navigate("SavedLocations")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.Profile.name) {
+        composable(route = "Profile") {
             ProfileScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onBasketScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Basket.name)
+                    navController.navigate("Basket")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onLogOutButtonClicked = {
-                    navController.navigate(LeftOverScreen.LogIn.name)
+                    navController.navigate("LogIn")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
+                    navController.navigate("SavedLocations")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.Reservations.name) {
+        composable(route = "Reservations") {
             ReservationsScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onReservationScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Reservations.name)
+                    navController.navigate("Reservations")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onGoBackButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onDetailsButtonClicked = {
-                    navController.navigate(LeftOverScreen.ReservationsDetails.name)
+                    navController.navigate("ReservationsDetails")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.ReservationsDetails.name) {
+        composable(route = "ReservationsDetails") {
             ReservationsDetailsScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate("HomePage")
                 },
                 onReservationScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Reservations.name)
+                    navController.navigate("Reservations")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onGoBackButtonClicked = {
-                    navController.navigate(LeftOverScreen.Reservations.name)
+                    navController.navigate("Reservations")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
+                    navController.navigate("SavedLocations.name")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.Favourite.name) {
+        composable(route =  "Favourite") {
             FavouriteScreen(
                 onHomePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.HomePage.name)
+                    navController.navigate( "HomePage")
                 },
                 onBasketScreensButtonClicked = {
-                    navController.navigate(LeftOverScreen.Basket.name)
+                    navController.navigate("Basket")
                 },
                 onFavouritePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Favourite.name)
+                    navController.navigate("Favourite")
                 },
                 onProfilePageButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 },
                 onRestaurantBoxClicked = {
-                    navController.navigate(LeftOverScreen.Restaurant.name)
+                    navController.navigate("Restaurant")
                 },
                 onLocationButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name)
+                    navController.navigate("SavedLocations")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.AccountSettings.name) {
+        composable(route = "AccountSettings") {
             AccountSettingsScreen(
                 onLocationsButtonClicked = {
-                    navController.navigate(LeftOverScreen.SavedLocations.name) },
+                    navController.navigate("SavedLocations") },
                 onSaveButtonClicked = {
-                    navController.navigate(LeftOverScreen.Profile.name)
+                    navController.navigate("Profile")
                 }
             )
         }
 
-        composable(route = LeftOverScreen.NewLocation.name) {
+        composable(route = "NewLocation") {
             NewLocationScreen(
-                onBackButtonClicked = { navController.navigate(LeftOverScreen.SavedLocations.name) },
-                onSaveMyLocationButtonClicked = { navController.navigate(LeftOverScreen.SavedLocations.name) }
+                onBackButtonClicked = { navController.navigate("SavedLocations") },
+                onSaveMyLocationButtonClicked = { navController.navigate("SavedLocations") }
             )
         }
 
         composable(route = LeftOverScreen.SavedLocations.name) {
             SavedLocationsScreen(
-                onBackButtonClicked = { navController.navigate(LeftOverScreen.HomePage.name) },
-                onNewLocationButtonClicked = { navController.navigate(LeftOverScreen.NewLocation.name) },
-                onEditButtonClicked = { navController.navigate(LeftOverScreen.NewLocation.name) }
+                onBackButtonClicked = { navController.navigate("HomePage") },
+                onNewLocationButtonClicked = { navController.navigate("NewLocation") },
+                onEditButtonClicked = { navController.navigate("NewLocation") }
             )
         }
 

@@ -21,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,14 +43,9 @@ fun ProfileScreen(
     onLogOutButtonClicked:() -> Unit,
     onLocationButtonClicked: () -> Unit
 ) {
-    Surface(
-        color = colorResource(id = R.color.Alabaster)
-    ) {
-        Column {
-            UpPart(onLocationButtonClicked)
-            ProfileInfo(
-                onLogOutButtonClicked = onLogOutButtonClicked
-            )
+    Scaffold(
+        topBar = { UpPart(onLocationButtonClicked) },
+        bottomBar = {
             BottomPart(
                 onHomePageButtonClicked = onHomePageButtonClicked,
                 onFavouritePageButtonClicked = onFavouritePageButtonClicked,
@@ -57,8 +53,14 @@ fun ProfileScreen(
                 onProfilePageButtonClicked = onProfilePageButtonClicked
             )
         }
-    }
+    ) {innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
+            ProfileInfo(
+                onLogOutButtonClicked = onLogOutButtonClicked
+            )
+        }
 
+    }
 }
 
 @Composable
