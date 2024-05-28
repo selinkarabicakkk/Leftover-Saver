@@ -12,29 +12,24 @@ import Reservations_Button from "../../Assets/images/reserve.png";
 
 const BusinessDatabasePage = () => {
   const navigate = useNavigate();
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      discountedPrice: 5.99,
-      imageUrl: "https://via.placeholder.com/150",
-      description: "This is a description for product 1.",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      discountedPrice: 3.99,
-      imageUrl: "https://via.placeholder.com/150",
-      description: "This is a description for product 2.",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      discountedPrice: 7.99,
-      imageUrl: "https://via.placeholder.com/150",
-      description: "This is a description for product 3.",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = () => {
+    $.ajax({
+      url: "https://foodleftoversaver.azurewebsites.net/api/v1/Item?restaurantId=35&pageNumber=1&pageSize=10",
+      method: "GET",
+      success: function (data) {
+        if (data && data.items) {
+          setProducts(data.items);
+        } else {
+          console.error("Invalid data format:", data);
+        }
+      },
+      error: function (error) {
+        console.error("Error fetching products:", error);
+      },
+    });
+  };
 
   const handleEditInventory = (e) => {
     e.preventDefault();
@@ -45,6 +40,7 @@ const BusinessDatabasePage = () => {
 
   useEffect(() => {
     document.title = "FoodLeftover | Business Database Page";
+    fetchProducts();
   }, []);
 
   return (
@@ -81,9 +77,13 @@ const BusinessDatabasePage = () => {
       </div>
       <div className="business-container">
         <div className="product-cards">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {products.length > 0 ? (
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))
+          ) : (
+            <p>No products available.</p>
+          )}
         </div>
       </div>
       <div className="underitemsbuttons">
