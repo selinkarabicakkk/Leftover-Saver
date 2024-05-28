@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import Delete_Account from "../../Assets/images/delete_account.png";
 import Reservations_Button from "../../Assets/images/reserve.png";
+import Update_Location from "../../Assets/images/location.png";
 
 const BusinessDatabasePage = () => {
   const navigate = useNavigate();
@@ -72,6 +73,17 @@ const BusinessDatabasePage = () => {
               />
             </Link>
             <p>Reservations</p>
+          </div>
+
+          <div className="update-location">
+            <Link to="/update-location">
+              <img
+                className="updatelocationimg"
+                src={Update_Location}
+                alt="Updatelocation"
+              />
+            </Link>
+            <p>Update Location</p>
           </div>
         </div>
       </div>

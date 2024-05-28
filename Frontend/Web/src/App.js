@@ -10,6 +10,7 @@ import BusinessEditInventoryPage from './Components/BusinessEditInventoryPage/Bu
 import ReservationsPage from './Components/ReservationsPage/ReservationsPage';
 import BusinessDeleteAccPage from './Components/BusinessDeleteAccPage/BusinessDeleteAccPage';
 import ForgotPasswordPage from './Components/ForgotPasswordPage/ForgotPasswordPage';
+import BusinessUpdateLocationPage from './Components/UpdateLocationPage/UpdateLocationPage';
 import { AuthProvider } from './AuthContext';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -29,6 +30,7 @@ function App() {
           <Route path='/reservations' element={<PrivateRoute element={<ReservationsPage />} />} />
           <Route path='/delete-account' element={<PrivateRoute element={<BusinessDeleteAccPage />} />} />
           <Route path='/forgot-password' element={<PublicRoute element={ForgotPasswordPage} />} />
+          <Route path='/update-location' element={<PrivateRoute element={<BusinessUpdateLocationPage />} />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
