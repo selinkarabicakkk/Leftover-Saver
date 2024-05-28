@@ -30,7 +30,7 @@ function App() {
           <Route path='/reservations' element={<PrivateRoute element={<ReservationsPage />} />} />
           <Route path='/delete-account' element={<PrivateRoute element={<BusinessDeleteAccPage />} />} />
           <Route path='/forgot-password' element={<PublicRoute element={ForgotPasswordPage} />} />
-          <Route path='/update-location' element={<PrivateRoute element={<BusinessUpdateLocationPage />} />} />
+          <Route path='/update-information' element={<PrivateRoute element={<BusinessUpdateLocationPage />} />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

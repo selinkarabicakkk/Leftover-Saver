@@ -14,13 +14,15 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = (token) => {
+  const login = (token, id) => {
     localStorage.setItem("authToken", token);
+    localStorage.setItem("restaurantId", id);
     setIsAuthenticated(true);
   };
 
   const logout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("restaurantId");
     setIsAuthenticated(false);
   };
 
