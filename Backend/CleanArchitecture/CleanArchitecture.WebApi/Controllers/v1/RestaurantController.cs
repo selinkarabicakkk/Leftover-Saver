@@ -87,7 +87,6 @@ namespace CleanArchitecture.WebApi.Controllers.v1
 
         // PUT /api/restaurant/{id}
         [HttpPut("update/{id}")]
-        [Authorize]
         public async Task<IActionResult> Put(int id, UpdateRestaurantCommand command)
         {
             if (id != command.Id)
