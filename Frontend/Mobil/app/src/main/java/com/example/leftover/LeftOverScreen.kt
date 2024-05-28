@@ -27,11 +27,7 @@ fun LeftOverApp() {
 
     NavHost(
         navController = navController,
-<<<<<<< Updated upstream
         startDestination = "HomePage"
-=======
-        startDestination = LeftOverScreen.SignUp.name
->>>>>>> Stashed changes
     ) {
         composable(route = "LoginPage") {
             LogInScreen(
@@ -39,11 +35,7 @@ fun LeftOverApp() {
                     navController.navigate("-HomePage-")
                 },
                 onSignUpButtonClicked = {
-<<<<<<< Updated upstream
                     navController.navigate("SignUp")
-=======
-                    navController.navigate(LeftOverScreen.LogIn.name)
->>>>>>> Stashed changes
                 },
             )
         }
@@ -53,16 +45,11 @@ fun LeftOverApp() {
                     navController.navigate("LogIn")
                 },
                 onSignUpButtonClicked = {
-<<<<<<< Updated upstream
                     navController.navigate("HomePage")
                 },
                 onContinueWithGoogleButtonClicked = {
                     navController.navigate("SignUp")
                 }
-=======
-                    navController.navigate(LeftOverScreen.LogIn.name)
-                },
->>>>>>> Stashed changes
             )
         }
 
