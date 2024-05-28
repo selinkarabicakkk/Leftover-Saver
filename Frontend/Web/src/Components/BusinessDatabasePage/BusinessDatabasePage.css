@@ -8,10 +8,10 @@
 
 .main-header {
     text-align: center;
-    margin: 4rem auto 5rem auto;
+    margin: 4rem 2rem 7rem auto;
 }
 
-.deleteaccimg , .reservationsimg{
+.deleteaccimg , .reservationsimg , .updatelocationimg {
     width: 22%;
     height: 66%;
     object-fit: cover;
@@ -22,8 +22,8 @@
 
 .accounts {
     display: flex;
-    justify-content: end;
-    margin-right: 3.5rem;
+    justify-content: center;
+    margin-left: 17rem;
     margin-bottom: 5rem;
 }
 
