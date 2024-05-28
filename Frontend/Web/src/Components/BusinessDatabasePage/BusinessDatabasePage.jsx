@@ -14,14 +14,20 @@ import Update_Location from "../../Assets/images/location.png";
 const BusinessDatabasePage = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [businessName, setBusinessName] = useState("Your Business Name");
 
   const fetchProducts = () => {
+    const restaurantId = localStorage.getItem("restaurantId") || 35; // Default restaurantId is 35
     $.ajax({
-      url: "https://foodleftoversaver.azurewebsites.net/api/v1/Item?restaurantId=35&pageNumber=1&pageSize=10",
-      method: "GET",
+      url:
+        "https://foodleftoversaver.azurewebsites.net/api/v1/Restaurant/getby/" +
+        restaurantId,
+      type: "GET",
+      contentType: "application/json",
       success: function (data) {
-        if (data && data.items) {
-          setProducts(data.items);
+        if (data && data.data.items) {
+          setProducts(data.data.items);
+          setBusinessName(data.data.name);
         } else {
           console.error("Invalid data format:", data);
         }
@@ -51,7 +57,7 @@ const BusinessDatabasePage = () => {
       {/* Delete account button (delete account sayfasina yönlendir) */}
 
       <div>
-        <h1 className="main-header">Business Name</h1>
+        <h1 className="main-header">{businessName}</h1>
         <div className="accounts">
           <div className="delaccdiv">
             <Link to="/delete-account">
@@ -83,7 +89,7 @@ const BusinessDatabasePage = () => {
                 alt="Updatelocation"
               />
             </Link>
-            <p>Update Location</p>
+            <p>Update Information</p>
           </div>
         </div>
       </div>

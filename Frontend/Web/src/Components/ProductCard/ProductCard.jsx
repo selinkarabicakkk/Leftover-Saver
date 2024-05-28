@@ -5,11 +5,11 @@ import "./ProductCard.css";
 const ProductCard = ({ product }) => {
   return (
     <div className="card">
-      <img src={product.imageUrl} alt={product.name} />
+      <img src={product.picture} alt={product.itemName} />
       <div className="card-content">
-        <h3>{product.name}</h3>
-        <p>{product.description}</p>
-        <p className="price">${product.discountedPrice}</p>
+        <h3>{product.itemName}</h3>
+        <p>{product.explanation}</p>
+        <p className="price">${product.price}</p>
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ const LoginPage = () => {
         password: password,
       }),
       success: function (response) {
-        login("default token"); // Assuming the response contains a token
+        login("default token", response.id); // Assuming the response contains a token
         navigate("/database"); // Redirect to the /database page
       },
       error: function (error) {
