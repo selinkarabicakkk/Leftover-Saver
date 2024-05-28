@@ -16,3 +16,12 @@ data class RestaurantByIdData(
     val pageNumber: Int,
     val pageSize: Int
 )
+
+data class RegisterResponse(
+    val succeeded: Boolean,
+    val message: String,
+    val errors: List<String>?,
+    val data: String?
+)
+
+
