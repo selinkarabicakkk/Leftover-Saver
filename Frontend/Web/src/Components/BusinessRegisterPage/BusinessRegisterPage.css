@@ -50,6 +50,7 @@ form input {
 }
 
 .submit-button button {
+    width: auto;
     text-decoration: none;
     color: #ffffff;
     border: none;
