@@ -13,6 +13,19 @@ data class AllRestaurant(
     var storeType: String
 )
 
+data class AllAddress(
+    val addressDefinition: String,
+    val addressTitle: String,
+    val addressDirection: String,
+    val buildingNo: Int,
+    val city: String,
+    val floor: Int,
+    val id: Int,
+    val neighbourhood: String,
+    val town: String,
+    val userName:String
+)
+
 data class RestaurantById(
     val name: String,
     val email: String,
@@ -47,5 +60,19 @@ data class Item(
     val created: String,
     val lastModifiedBy: String,
     val lastModified: String,
+)
+
+data class SignUp(
+    val confirmPassword: String,
+    val email: String,
+    val firstName: String,
+    val lastName: String,
+    val password: String,
+    val userName: String
+)
+
+data class LogIn(
+    val email: String,
+    val password: String
 )
 

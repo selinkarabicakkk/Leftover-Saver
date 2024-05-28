@@ -27,12 +27,12 @@ fun LeftOverApp() {
 
     NavHost(
         navController = navController,
-        startDestination = "HomePage"
+        startDestination = "SignUp"
     ) {
-        composable(route = "LoginPage") {
+        composable(route = "Login") {
             LogInScreen(
                 onLogInButtonClicked = {
-                    navController.navigate("-HomePage-")
+                    navController.navigate("HomePage")
                 },
                 onSignUpButtonClicked = {
                     navController.navigate("SignUp")
@@ -42,13 +42,10 @@ fun LeftOverApp() {
         composable(route = "SignUp") {
             SignUpScreen(
                 onLogInButtonClicked = {
-                    navController.navigate("LogIn")
+                    navController.navigate("Login")
                 },
                 onSignUpButtonClicked = {
                     navController.navigate("HomePage")
-                },
-                onContinueWithGoogleButtonClicked = {
-                    navController.navigate("SignUp")
                 }
             )
         }
@@ -269,7 +266,7 @@ fun LeftOverApp() {
             )
         }
 
-        composable(route = LeftOverScreen.SavedLocations.name) {
+        composable(route = "SavedLocations") {
             SavedLocationsScreen(
                 onBackButtonClicked = { navController.navigate("HomePage") },
                 onNewLocationButtonClicked = { navController.navigate("NewLocation") },
