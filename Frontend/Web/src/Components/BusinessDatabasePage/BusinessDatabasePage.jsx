@@ -45,6 +45,18 @@ const BusinessDatabasePage = () => {
     navigate("/edit-inventory"); // Redirect to the /database page
   };
 
+  const handleDeleteInventory = (e) => {
+    e.preventDefault();
+    // Add authentication logic here
+    navigate("/delete-inventory"); // Redirect to the /delete-inventory page
+  };
+
+  const handleAddInventory = (e) => {
+    e.preventDefault();
+    // Add authentication logic here
+    navigate("/add-inventory"); // Redirect to the /add-inventory page
+  };
+
   useEffect(() => {
     document.title = "FoodLeftover | Business Database Page";
     fetchProducts();
@@ -106,7 +118,8 @@ const BusinessDatabasePage = () => {
       </div>
       <div className="underitemsbuttons">
         <button onClick={handleEditInventory}>Edit Inventory</button>
-        <button>Delete Inventory</button>
+        <button onClick={handleDeleteInventory}>Delete Inventory</button>
+        <button onClick={handleAddInventory}>Add Inventory</button>
       </div>
       <Footer />
     </>
