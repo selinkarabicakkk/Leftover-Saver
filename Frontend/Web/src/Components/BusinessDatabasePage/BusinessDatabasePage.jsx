@@ -82,7 +82,7 @@ const BusinessDatabasePage = () => {
           </div>
 
           <div className="update-location">
-            <Link to="/update-location">
+            <Link to="/update-information">
               <img
                 className="updatelocationimg"
                 src={Update_Location}
