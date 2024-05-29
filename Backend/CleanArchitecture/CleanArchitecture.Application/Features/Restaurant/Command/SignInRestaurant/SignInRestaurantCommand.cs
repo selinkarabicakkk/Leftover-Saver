@@ -10,6 +10,7 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.SignInRestaurant
 {
     public class SignInRestaurantCommand : IRequest<SignInResult>
     {
+        public int Id { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }
@@ -18,7 +19,8 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.SignInRestaurant
     {
         public bool Success { get; set; }
         public string ErrorMessage { get; set; }
-    }
+        public int Id   {get; set; }
+}
 
     public class SignInRestaurantCommandHandler : IRequestHandler<SignInRestaurantCommand, SignInResult>
     {
@@ -43,7 +45,8 @@ namespace CleanArchitecture.Core.Features.Restaurant.Command.SignInRestaurant
 
             return new SignInResult
             {
-                Success = true
+                Success = true,
+                Id = restaurant.Id
             };
         }
     }

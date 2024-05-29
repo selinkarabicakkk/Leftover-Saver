@@ -47,7 +47,8 @@ namespace CleanArchitecture.WebApi.Controllers.v1
             {
                 // If success, create session
                 HttpContext.Session.SetString("RestaurantEmail", command.Email);
-                return Ok(new { message = "Sign-in successful." });
+                return Ok(await Mediator.Send(command));
+
             }
 
             return Unauthorized(new { message = result.ErrorMessage });
