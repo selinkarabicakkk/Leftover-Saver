@@ -4,6 +4,7 @@ import "./BusinessDeleteInventoryPage.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import $ from "jquery";
+import { useEffect } from "react";
 
 const BusinessDeleteInventoryPage = () => {
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ const BusinessDeleteInventoryPage = () => {
       },
     });
   };
+
+  useEffect(() => {
+    document.title = "FoodLeftover | Business Delete Inventory Page";
+  }, []);
 
   return (
     <>
